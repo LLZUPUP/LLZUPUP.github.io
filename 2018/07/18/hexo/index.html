@@ -12,7 +12,7 @@
     
     
     
-    <title>archive_a | llz.blog</title>
+    <title>hexo创建blog学习 | llz.blog</title>
     <link href=”https://llzupup.github.io“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -115,7 +115,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -168,19 +168,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://llzupup.github.io">llz.blog</a>
         >
-        <span>归档</span>
+        <span>hexo创建blog学习</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/2018/07/18/hexo/">hexo创建blog学习</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/hexo/">hexo</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-07-18
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -188,35 +203,86 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/2018/07/18/hexo/">hexo创建blog学习</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-07-18
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/hexo/">hexo</a>
+                
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2018年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2018/07/18/hexo/">hexo创建blog学习</a>
-                        <br>
-            
-             
-                        <a href="/2018/07/18/test3/">test3</a>
-                        <br>
-            
-             
-                        <a href="/2018/07/18/text/">test1</a>
-                        <br>
-            
-                    </div>
-        
+    <div class="content-article">
+        <h4 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h4><p>安装以下东西：</p>
+<blockquote>
+<p>1.git <br>2.node <br>3.个人github配置</p>
+</blockquote>
+<p>安装完上面几大重要东西以后，hexo的搭建开始进入正轨。</p>
+<h4 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h4><ol>
+<li>在vscode中本地创建一个文件夹blog文件夹，cd进入该目录，<strong>里面必须是空的!</strong></li>
+<li>在vscode中打开终端（命令行）,输入npm install -g hexo 或者 yarn add hexo -g</li>
+<li>安装完成以后输入hexo -v会显示hexo的相关信息</li>
+<li>此时hexo应已安装完成，在该目录下执行hexo init进行hexo初始化以及安装依赖，就会有下列文件产生。</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/19/164ae5a129208749?w=474&amp;h=177&amp;f=png&amp;s=5759" alt="hexo"></p>
+<ul>
+<li>node_modules：是依赖包</li>
+<li>public：存放的是生成的页面</li>
+<li>scaffolds：命令生成文章等的模板</li>
+<li>source：用命令创建的各种文章</li>
+<li>themes：主题</li>
+<li>_config.yml：整个博客的配置</li>
+<li>db.json：source解析所得到的</li>
+<li>package.json：项目所需模块项目的配置信息</li>
+</ul>
+<hr>
+<h4 id="github创建一个hexo的repo"><a href="#github创建一个hexo的repo" class="headerlink" title="github创建一个hexo的repo"></a>github创建一个hexo的repo</h4><p><strong>repo的仓库名必须是yourname.github.io这个格式，其中yourname是github个人账号名</strong><br>创建好以后，打开blog文件夹下的_config.yml配置文件，找到以下：</p>
+<blockquote>
+<p>deploy:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: git<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;branch: master</p>
+</blockquote>
+<p><strong>注意：冒号后面都是要带一个空格的</strong><br>cd进入blog目录</p>
+<ol>
+<li>hexo clean //清除缓存</li>
+<li>hexo generate</li>
+<li>hexo server</li>
+</ol>
+<p>打开浏览器输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 就能看到初始blog了</p>
+<hr>
+<h4 id="上传到自己的github"><a href="#上传到自己的github" class="headerlink" title="上传到自己的github"></a>上传到自己的github</h4><p>在blog目录下安装：npm install hexo-deployer-git –save<br>执行命令：</p>
+<ol>
+<li>hexo clean</li>
+<li>hexo generate</li>
+<li>hexo deploy<br>在首次deploy的时候，会要求输入github的username及passward</li>
+</ol>
+<p><em>最后在浏览器中输入<a href="http://yourgithubname.github.io" target="_blank" rel="noopener">http://yourgithubname.github.io</a> 就可以看到自己的博客了</em></p>
+<hr>
+<h4 id="修改blog主题以及配置"><a href="#修改blog主题以及配置" class="headerlink" title="修改blog主题以及配置"></a>修改blog主题以及配置</h4><p>hexo的默认主题很丑！！所以我们需要更换它的主题，<a href="https://hexo.io/themes/" target="_blank" rel="noopener">themes</a>可以在这里面找到自己想要的主题，也可以通过<a href="https://www.baidu.com/" target="_blank" rel="noopener">百度</a>来找自己喜欢的风格主题</p>
+<h4 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h4><p>hexo支持markdown的语法，因此很方面，可以通过hexo new ‘文章名’或者hexo new page ‘文件夹名’来创建文章md文件，也可以手动在文件夹下面添加。</p>
+<ul>
+<li>到这里，简单的hexo博客搭建已经完成。最后，关于更换完主题后的相关配置，可以查看相关主题的配置文档，一般都会有详细的说明，这里就不多提了，好晚了~好困~~睡觉睡觉，祝自己好梦。</li>
+</ul>
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'hexo创建blog学习'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -333,23 +399,23 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/archives/2018/07/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/07/18/hexo/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2018/07/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/07/18/hexo/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2018/07/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/07/18/hexo/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/hexo/" style="font-size: 9.816622842754523px;" class="tag-cloud-link">hexo</a>
+    <a href="/tags/hexo/" style="font-size: 12.459476067320448px;" class="tag-cloud-link">hexo</a>
     
-    <a href="/tags/Testing/" style="font-size: 18.72835954253309px;" class="tag-cloud-link">Testing</a>
+    <a href="/tags/Testing/" style="font-size: 19.72640738133759px;" class="tag-cloud-link">Testing</a>
     
-    <a href="/tags/Another-Tag/" style="font-size: 16.185678384612626px;" class="tag-cloud-link">Another Tag</a>
+    <a href="/tags/Another-Tag/" style="font-size: 13.363020980751717px;" class="tag-cloud-link">Another Tag</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -458,7 +524,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = ''
+      window.commentConfig.id = 'Wed Jul 18 2018 09:39:05 GMT+0800'
       window.commentConfig.owner = 'LLZUPUP'
       window.commentConfig.repo = 'book_note'
       window.commentConfig.client_id = 'c025c72d8b98c6577a5b'
@@ -466,7 +532,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: '',
+      	id: 'Wed Jul 18 2018 09:39:05 GMT+0800',
         owner: 'LLZUPUP',
         repo: 'book_note',
         client_id: 'c025c72d8b98c6577a5b',

@@ -12,7 +12,7 @@
     
     
     
-    <title>llzzzz</title>
+    <title>test3 | llzzzz</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -124,20 +124,26 @@
                 
                 
                 
-                <li class="">
-                    <a href="/categories">
-                        <i class="fa fa-list"></i>分类
-                    </a>
-                </li>
-                
-                
-                
-                
-                
-                <li class="">
-                    <a href="/tags">
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
                         <i class="fa fa-tags"></i>标签
                     </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/Testing/">Testing</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/Another-Tag/">Another Tag</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
                 </li>
                 
                 
@@ -164,19 +170,26 @@
         <i class="fa fa-home"></i>
         <a href="http://yoursite.com">llzzzz</a>
         >
-        <span></span>
+        <span>test3</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2018/07/17/hello-world/"></a>
+                <a href="/2018/07/18/test3/">test3</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2018-07-17
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Testing/">Testing</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-07-18
             </span>
             
         </div>
@@ -186,13 +199,18 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2018/07/17/hello-world/"></a>
+                    <a href="/2018/07/18/test3/">test3</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2018-07-17
+                <i class="fa fa-calendar"></i> 2018-07-18
             </p>
             <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Testing/">Testing</a>
+                
                 
                 
             </p>
@@ -209,7 +227,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = ''
+      window.commentConfig.title = 'test3'
     }
 </script>
 
@@ -270,7 +288,19 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2018/07/17/hello-world/"></a>
+                    <a href="/2018/07/18/hello-world/">hexo创建blog学习</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/07/18/text/">test1</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/07/18/test3/">test3</a>
                 </span>
             </li>
             
@@ -292,7 +322,19 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2018/07/17/hello-world/"></a>
+                    <a href="/2018/07/18/hello-world/">hexo创建blog学习</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/07/18/text/">test1</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/07/18/test3/">test3</a>
                 </span>
             </li>
             
@@ -305,17 +347,21 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/2018/07/17/hello-world/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/07/18/test3/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/2018/07/17/hello-world/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/07/18/test3/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/2018/07/17/hello-world/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/07/18/test3/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/Testing/" style="font-size: 16.42754202487812px;" class="tag-cloud-link">Testing</a>
+    
+    <a href="/tags/Another-Tag/" style="font-size: 10.481837510699389px;" class="tag-cloud-link">Another Tag</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -424,7 +470,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = 'Tue Jul 17 2018 23:04:10 GMT+0800'
+      window.commentConfig.id = 'Wed Jul 18 2018 09:39:05 GMT+0800'
       window.commentConfig.owner = 'LLZUPUP'
       window.commentConfig.repo = 'book_note'
       window.commentConfig.client_id = 'c025c72d8b98c6577a5b'
@@ -432,7 +478,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: 'Tue Jul 17 2018 23:04:10 GMT+0800',
+      	id: 'Wed Jul 18 2018 09:39:05 GMT+0800',
         owner: 'LLZUPUP',
         repo: 'book_note',
         client_id: 'c025c72d8b98c6577a5b',

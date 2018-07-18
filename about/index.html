@@ -12,7 +12,7 @@
     
     
     
-    <title>about | llzzzz</title>
+    <title>一位96年的前端萌新~ | llzzzz</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -124,20 +124,26 @@
                 
                 
                 
-                <li class="">
-                    <a href="/categories">
-                        <i class="fa fa-list"></i>分类
-                    </a>
-                </li>
-                
-                
-                
-                
-                
-                <li class="">
-                    <a href="/tags">
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
                         <i class="fa fa-tags"></i>标签
                     </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/Testing/">Testing</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/Another-Tag/">Another Tag</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
                 </li>
                 
                 
@@ -166,7 +172,7 @@
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/about/index.html">about</a>
+                <a href="/about/index.html">一位96年的前端萌新~</a>
             </h1>
         </div>
         <div class="tag-article">
@@ -180,7 +186,7 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/about/index.html">about</a>
+                    <a href="/about/index.html">一位96年的前端萌新~</a>
                 </h4>
             </div>
             <p>
@@ -199,7 +205,7 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'about'
+      window.commentConfig.title = '一位96年的前端萌新~'
     }
 </script>
 
@@ -261,7 +267,19 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2018/07/17/hello-world/"></a>
+                    <a href="/2018/07/18/hello-world/">hexo创建blog学习</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/07/18/text/">test1</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/07/18/test3/">test3</a>
                 </span>
             </li>
             
@@ -283,7 +301,19 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2018/07/17/hello-world/"></a>
+                    <a href="/2018/07/18/hello-world/">hexo创建blog学习</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/07/18/text/">test1</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/07/18/test3/">test3</a>
                 </span>
             </li>
             
@@ -307,6 +337,10 @@
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/Testing/" style="font-size: 16.09789825331879px;" class="tag-cloud-link">Testing</a>
+    
+    <a href="/tags/Another-Tag/" style="font-size: 9.54892869140684px;" class="tag-cloud-link">Another Tag</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">

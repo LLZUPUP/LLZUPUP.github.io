@@ -12,7 +12,7 @@
     
     
     
-    <title>archive_a | 啊呜~</title>
+    <title>about | 啊呜~</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -115,7 +115,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -143,7 +143,7 @@
                 
                 
                 
-                <li class="">
+                <li class="current">
                     <a href="/about">
                         <i class="fa fa-user"></i>关于我
                     </a>
@@ -158,19 +158,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
-    <div class="breadcrumb">
-        <i class="fa fa-home"></i>
-        <a href="http://yoursite.com">啊呜~</a>
-        >
-        <span>归档</span>
-    </div>
+                    <!-- 搜索页面(尽可能接近ZanBlog搜索功能) -->
+
+
+<article class="article well article-body" id="article">
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/about/index.html">about</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-07-18
+            </span>
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -178,27 +180,30 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/about/index.html">about</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-07-18
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2018年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2018/07/17/hello-world/"></a>
-                        <br>
-            
-                    </div>
+    <div class="content-article">
         
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'about'
+    }
+</script>
+
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -291,13 +296,13 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/about/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/about/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/about/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -410,7 +415,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = ''
+      window.commentConfig.id = 'Wed Jul 18 2018 13:04:23 GMT+0800'
       window.commentConfig.owner = 'LLZUPUP'
       window.commentConfig.repo = 'book_note'
       window.commentConfig.client_id = 'c025c72d8b98c6577a5b'
@@ -418,7 +423,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: '',
+      	id: 'Wed Jul 18 2018 13:04:23 GMT+0800',
         owner: 'LLZUPUP',
         repo: 'book_note',
         client_id: 'c025c72d8b98c6577a5b',

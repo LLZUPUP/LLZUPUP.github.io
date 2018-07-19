@@ -257,62 +257,14 @@
 <p>yarn add prop-types<br>import PropTypes from ‘prop-types’</p>
 </blockquote>
 <p><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b27060f89edc2?w=405&amp;h=524&amp;f=jpeg&amp;s=51899" alt=""><br>MyTitle中有一个title属性，他的值为一个字符串，我们可以通过MyTitle.propTypes来定义该组件中属性的类型.如果将title: PropTypes.string改为其他类型，就会报以下的错误。<br><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b2733fef90be0?w=874&amp;h=135&amp;f=jpeg&amp;s=35842" alt=""></p>
-<h3 id="React之ref"><a href="#React之ref" class="headerlink" title="React之ref"></a>React之ref</h3><p>同vue的ref作用一样，组件并不是真实的DOM节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。<br><br>但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性。<br>图片放的太多了，在这里贴一下代码..请忽视开头说的话..<br><code>class App extends Component {
-  handleClick () {
-    this.refs.myTextInput.focus()
-  }
-  render() {
-    return (
-      &lt;div className=&quot;App&quot;&gt;
-        &lt;LikeButton/&gt;
-        &lt;input type=&quot;text&quot; ref=&quot;myTextInput&quot;/&gt;
-        &lt;input type=&quot;button&quot; value=&quot;Focus the text input&quot; onClick={ this.handleClick.bind(this) }/&gt;
-      &lt;/div&gt;
-    );
-  }
-}</code><br><strong>在这里需要强调的是，React的事件中如果不用剪头函数，那就要用bind来绑定this。</strong></p>
+<h3 id="React之ref"><a href="#React之ref" class="headerlink" title="React之ref"></a>React之ref</h3><p>同vue的ref作用一样，组件并不是真实的DOM节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。<br><br>但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性。<br>图片放的太多了，在这里贴一下代码..请忽视开头说的话..<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class App extends Component &#123;</span><br><span class="line">  handleClick () &#123;</span><br><span class="line">    this.refs.myTextInput.focus()</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">        &lt;LikeButton/&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; ref=&quot;myTextInput&quot;/&gt;</span><br><span class="line">        &lt;input type=&quot;button&quot; value=&quot;Focus the text input&quot; onClick=&#123; this.handleClick.bind(this) &#125;/&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>在这里需要强调的是，React的事件中如果不用剪头函数，那就要用bind来绑定this。</strong></p>
 <hr>
 <h3 id="React之this-state以及点击事件"><a href="#React之this-state以及点击事件" class="headerlink" title="React之this.state以及点击事件"></a>React之this.state以及点击事件</h3><p>React中的state就相当于vue里的data数据存储,而小程序的this.setData,大家懂的..</p>
-<p><code>class LikeButton extends Component {
-  state = {
-    liked: false
-  }
-  handleClick () {
-    // console.log(this)
-    this.setState({
-      liked: !this.state.liked
-    })
-  }
-  render() {
-    const text = this.state.liked?&#39;liked&#39;:&#39;don\&#39;t like&#39;
-    return (
-      &lt;p onClick={ () =&gt; this.handleClick() }&gt;
-        You { text } this.click to toggle
-      &lt;/p&gt;
-    )
-  }
-}</code><br>在这里定义一个text变量，通过state中的liked来判断text的值，然后再通过onClick点击事件来反复改变liked的值，效果可以自己通过代码实现看看，就是普通的MVVM模型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class LikeButton extends Component &#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    liked: false</span><br><span class="line">  &#125;</span><br><span class="line">  handleClick () &#123;</span><br><span class="line">    // console.log(this)</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      liked: !this.state.liked</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const text = this.state.liked?&apos;liked&apos;:&apos;don\&apos;t like&apos;</span><br><span class="line">    return (</span><br><span class="line">      &lt;p onClick=&#123; () =&gt; this.handleClick() &#125;&gt;</span><br><span class="line">        You &#123; text &#125; this.click to toggle</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这里定义一个text变量，通过state中的liked来判断text的值，然后再通过onClick点击事件来反复改变liked的值，效果可以自己通过代码实现看看，就是普通的MVVM模型。</p>
 <hr>
-<h3 id="React之实现双向数据绑定"><a href="#React之实现双向数据绑定" class="headerlink" title="React之实现双向数据绑定"></a>React之实现双向数据绑定</h3><p>vue里面v-model一键实现的事情React又没有-0-，不过我们可以通过onChange事件来简单实现它，直接上代码.<br><code>class App extends Component {
-  state= {
-    value: &#39;Hello!&#39;
-  }
-  handleChange (event) {
-    this.setState({
-      value: event.target.value
-    })  }
-  render() {
-    const val = this.state.value
-    return (
-      &lt;div className=&quot;App&quot;&gt;
-        &lt;div&gt;
-          &lt;input type=&quot;text&quot; value={val} onChange={this.handleChange.bind(this)}/&gt;
-          &lt;p&gt;{ val }&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    );
-  }
-}</code></p>
+<h3 id="React之实现双向数据绑定"><a href="#React之实现双向数据绑定" class="headerlink" title="React之实现双向数据绑定"></a>React之实现双向数据绑定</h3><p>vue里面v-model一键实现的事情React又没有-0-，不过我们可以通过onChange事件来简单实现它，直接上代码.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class App extends Component &#123;</span><br><span class="line">  state= &#123;</span><br><span class="line">    value: &apos;Hello!&apos;</span><br><span class="line">  &#125;</span><br><span class="line">  handleChange (event) &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      value: event.target.value</span><br><span class="line">    &#125;)  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const val = this.state.value</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;input type=&quot;text&quot; value=&#123;val&#125; onChange=&#123;this.handleChange.bind(this)&#125;/&gt;</span><br><span class="line">          &lt;p&gt;&#123; val &#125;&lt;/p&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h3 id="React之组件生命周期"><a href="#React之组件生命周期" class="headerlink" title="React之组件生命周期"></a>React之组件生命周期</h3><p>组件的生命周期分成三个状态：</p>
 <ul>
@@ -333,7 +285,7 @@
 <li>componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用</li>
 <li>shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用</li>
 </ul>
-<p>另外，组件的style属性的设置方式也值得注意，不能写成<code>style=&quot;opacity:{this.state.opacity};&quot;</code>而要写成<code>style={</code>{opacity: this.state.opacity}<code>}</code></p>
+<p>另外，组件的style属性的设置方式也值得注意，不能写成<code>style=&quot;opacity:{this.state.opacity};&quot;`而要写成`style={`{opacity: this.state.opacity}`}</code></p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>作为一个前端程序猿很不容易，前端的技术更新太快，都出现了“别更新了，老子学不动了”这类前端的梗。不过前端层出不穷的技术让我们看到了前端的未来，我们都是热于分享的人，希望正在学习的我也能够帮助到正在学习的你。  这些demo都在我的<a href="https://github.com/LLZUPUP/React" target="_blank" rel="noopener">github</a>,感兴趣的朋友可以clone下来看下，最近搭了一个<a href="https://llzupup.github.io/">个人blog</a>,欢迎来踩，PC端主题一股科幻风有没有！！主题来自于<a href="https://github.com/ZEROKISEKI/hexo-theme-gal" target="_blank" rel="noopener">hexo主题</a><br>最后说一句！很重要！如果我的这篇文章帮助到了你，那你可以点个star再走嘛~一起upupup!</p>
 
     </div>
@@ -465,9 +417,9 @@
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/hexo/" style="font-size: 12.66517800006563px;" class="tag-cloud-link">hexo</a>
+    <a href="/tags/hexo/" style="font-size: 14.398033470462853px;" class="tag-cloud-link">hexo</a>
     
-    <a href="/tags/React/" style="font-size: 19.718041323682797px;" class="tag-cloud-link">React</a>
+    <a href="/tags/React/" style="font-size: 8.07494374697989px;" class="tag-cloud-link">React</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">

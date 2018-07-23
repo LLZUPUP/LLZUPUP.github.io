@@ -12,7 +12,7 @@
     
     
     
-    <title>archive_a | Lzzzz</title>
+    <title>聊聊HTTPS | Lzzzz</title>
     <link href=”https://llzupup.github.io“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,7 +97,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -154,19 +154,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://llzupup.github.io">Lzzzz</a>
         >
-        <span>归档</span>
+        <span>聊聊HTTPS</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/2018/07/21/https/">聊聊HTTPS</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/https/">https</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-07-21
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -174,39 +189,50 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/2018/07/21/https/">聊聊HTTPS</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-07-21
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/https/">https</a>
+                
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2018年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2018/07/21/https/">聊聊HTTPS</a>
-                        <br>
-            
-             
-                        <a href="/2018/07/20/this/">this、apply、call、bind</a>
-                        <br>
-            
-             
-                        <a href="/2018/07/19/react/">认识React</a>
-                        <br>
-            
-             
-                        <a href="/2018/07/18/hexo/">hexo搭建blog</a>
-                        <br>
-            
-                    </div>
-        
+    <div class="content-article">
+        <p>HTTP实现原理：<a href="https://mp.weixin.qq.com/s/StqqafHePlBkWAPQZg3NrA" target="_blank" rel="noopener">一个故事讲完https</a></p>
+<h3 id="什么是-HTTPS"><a href="#什么是-HTTPS" class="headerlink" title="什么是 HTTPS"></a>什么是 HTTPS</h3><p>HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。 现在它被广泛用于万维网上安全敏感的通讯，例如交易支付方面。</p>
+<h3 id="HTTP-与-HTTPS-的区别"><a href="#HTTP-与-HTTPS-的区别" class="headerlink" title="HTTP 与 HTTPS 的区别"></a>HTTP 与 HTTPS 的区别</h3><ol>
+<li>HTTP 是明文传输，HTTPS 通过 SSL\TLS 进行了加密</li>
+<li>HTTP 的端口号是 80，HTTPS 是 443</li>
+<li>HTTPS 需要到 CA 申请证书，一般免费证书很少，需要交费</li>
+<li>HTTPS 的连接很简单，是无状态的；HTTPS 协议是由 SSL+HTTP 协议构建的可进行加密传输、身份认证的网络协议，比 HTTP 协议安全。</li>
+</ol>
+<h3 id="为什么要使用-HTTPS"><a href="#为什么要使用-HTTPS" class="headerlink" title="为什么要使用 HTTPS"></a>为什么要使用 HTTPS</h3><ol>
+<li>建立一个信息安全通道，来保证数据传输的安全</li>
+<li>确认网站的真实性，防止钓鱼网站</li>
+</ol>
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = '聊聊HTTPS'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -335,25 +361,25 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/07/21/https/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/07/21/https/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/07/21/https/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/hexo/" style="font-size: 11.369996817537801px;" class="tag-cloud-link">hexo</a>
+    <a href="/tags/hexo/" style="font-size: 10.736228934276458px;" class="tag-cloud-link">hexo</a>
     
-    <a href="/tags/React/" style="font-size: 14.134097363395627px;" class="tag-cloud-link">React</a>
+    <a href="/tags/React/" style="font-size: 8.855135237164365px;" class="tag-cloud-link">React</a>
     
-    <a href="/tags/javascript/" style="font-size: 11.29791537517706px;" class="tag-cloud-link">javascript</a>
+    <a href="/tags/javascript/" style="font-size: 10.44696339487613px;" class="tag-cloud-link">javascript</a>
     
-    <a href="/tags/https/" style="font-size: 19.693447432612988px;" class="tag-cloud-link">https</a>
+    <a href="/tags/https/" style="font-size: 11.046758960017101px;" class="tag-cloud-link">https</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -460,7 +486,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = ''
+      window.commentConfig.id = 'Sat Jul 21 2018 09:39:05 GMT+0800'
       window.commentConfig.owner = 'LLZUPUP'
       window.commentConfig.repo = 'book_note'
       window.commentConfig.client_id = 'c025c72d8b98c6577a5b'
@@ -468,7 +494,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: '',
+      	id: 'Sat Jul 21 2018 09:39:05 GMT+0800',
         owner: 'LLZUPUP',
         repo: 'book_note',
         client_id: 'c025c72d8b98c6577a5b',

@@ -12,7 +12,7 @@
     
     
     
-    <title>tags: https | Lzzzz</title>
+    <title>React加载stylus文件之eject | Lzzzz</title>
     <link href=”https://llzupup.github.io“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -154,19 +154,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-tag">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://llzupup.github.io">Lzzzz</a>
         >
-        <span>标签</span>
+        <span>React加载stylus文件之eject</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/tags/https/index.html">https</a>
+                <a href="/2018/07/22/eject/">React加载stylus文件之eject</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/React/">React</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-07-22
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -174,21 +189,44 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/tags/https/index.html">https</a>
+                    <a href="/2018/07/22/eject/">React加载stylus文件之eject</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-07-22
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/React/">React</a>
+                
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-            <a href="/2018/07/21/https/">聊聊HTTPS</a>
-            <br>
-            
-            
-        </div>
+    <div class="content-article">
+        <h3 id="上篇知道了如何自定义配置webpack-接下来就让我们用简单一些的方法来实现使用stylus等功能。"><a href="#上篇知道了如何自定义配置webpack-接下来就让我们用简单一些的方法来实现使用stylus等功能。" class="headerlink" title="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。"></a>上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。</h3><p><strong>安装stylus依赖：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add stylus stylus-loader</span><br></pre></td></tr></table></figure></p>
+<p><strong>在webpack配置依赖，如果要手动配置webpack的话，React必须先把配置Eject出来：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn run eject</span><br></pre></td></tr></table></figure></p>
+<p><strong>react-cli会询问你是否执行操作，并提示你这个操作是不可逆的。</strong><br>输入y继续<br><br>这个时候如果eject的该项目是在本地的一个git仓库里的，而且这个仓库里还有文件未上传到远程。那么恭喜你，你eject会失败，它会告诉你必须要把本地这个仓库里的文件未更改的状态下才能把webpack配置eject出来。<br><br><br><strong>成功以后项目根目录下会弹射出一个config文件夹和一个scripts文件夹，同时package.json里的相关配置也会改变</strong><br><br><br>在弹射出来的config文件夹下找到webpack.config.dev.js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">找到module.rules.oneOf,里面有一个css的配置项，把styl加进去:</span><br><span class="line">test: /\.(css|styl)$/,</span><br><span class="line">然后在use中加入以下配置代码：</span><br><span class="line">&#123;</span><br><span class="line">  loader: require.resolve(&apos;stylus-loader&apos;),</span><br><span class="line">  options: &#123;</span><br><span class="line">    sourceMap: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">滑到oneOf的最下面，找到exclude，将styl加进去：</span><br><span class="line">exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/,/\.styl$/],</span><br></pre></td></tr></table></figure></p>
+<p><strong>然后记住要重新yarn安装一下依赖，最后输入yarn start就能成功启动了(可以直接引入styl文件)，这个时候还会出现一个postcss的提示，原来他是一个强大的东西，autoprefixer也只是他其中的一个插件</strong><br>安装postcss-loader:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add postcss-loader</span><br></pre></td></tr></table></figure></p>
+<p><em>最后就会惊喜的发现关于css的浏览器兼容性问题的浏览器前缀会自动帮你加上</em></p>
+<p><a href="https://github.com/LLZUPUP/React/tree/master/test" target="_blank" rel="noopener">我的demo地址</a></p>
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'React加载stylus文件之eject'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -341,25 +379,25 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/tags/https/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/07/22/eject/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/tags/https/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/07/22/eject/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/tags/https/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/07/22/eject/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/React/" style="font-size: 14.300471410494971px;" class="tag-cloud-link">React</a>
+    <a href="/tags/React/" style="font-size: 15.100516743877492px;" class="tag-cloud-link">React</a>
     
-    <a href="/tags/hexo/" style="font-size: 13.527690165026273px;" class="tag-cloud-link">hexo</a>
+    <a href="/tags/hexo/" style="font-size: 12.913819142854607px;" class="tag-cloud-link">hexo</a>
     
-    <a href="/tags/https/" style="font-size: 10.53132817723105px;" class="tag-cloud-link">https</a>
+    <a href="/tags/https/" style="font-size: 10.161969726780047px;" class="tag-cloud-link">https</a>
     
-    <a href="/tags/javascript/" style="font-size: 18.940215522968177px;" class="tag-cloud-link">javascript</a>
+    <a href="/tags/javascript/" style="font-size: 18.494541212182952px;" class="tag-cloud-link">javascript</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -466,7 +504,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = ''
+      window.commentConfig.id = 'Sun Jul 22 2018 21:01:05 GMT+0800'
       window.commentConfig.owner = 'LLZUPUP'
       window.commentConfig.repo = 'book_note'
       window.commentConfig.client_id = 'c025c72d8b98c6577a5b'
@@ -474,7 +512,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: '',
+      	id: 'Sun Jul 22 2018 21:01:05 GMT+0800',
         owner: 'LLZUPUP',
         repo: 'book_note',
         client_id: 'c025c72d8b98c6577a5b',

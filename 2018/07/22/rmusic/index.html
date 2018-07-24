@@ -12,7 +12,7 @@
     
     
     
-    <title>tags: javascript | Lzzzz</title>
+    <title>React定制webpack 工作流 | Lzzzz</title>
     <link href=”https://llzupup.github.io“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -154,19 +154,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-tag">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://llzupup.github.io">Lzzzz</a>
         >
-        <span>标签</span>
+        <span>React定制webpack 工作流</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/tags/javascript/index.html">javascript</a>
+                <a href="/2018/07/22/rmusic/">React定制webpack 工作流</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/React/">React</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-07-22
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -174,21 +189,79 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/tags/javascript/index.html">javascript</a>
+                    <a href="/2018/07/22/rmusic/">React定制webpack 工作流</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-07-22
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/React/">React</a>
+                
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-            <a href="/2018/07/20/this/">this、apply、call、bind</a>
-            <br>
-            
-            
-        </div>
+    <div class="content-article">
+        <h2 id="不使用eject-自定义webpack配置使用stylus以及alias-别名和autoprefixer前缀"><a href="#不使用eject-自定义webpack配置使用stylus以及alias-别名和autoprefixer前缀" class="headerlink" title="不使用eject,自定义webpack配置使用stylus以及alias@别名和autoprefixer前缀"></a>不使用eject,自定义webpack配置使用stylus以及alias@别名和autoprefixer前缀</h2><ul>
+<li><ol>
+<li>在项目根目录下新建一个scripts文件夹。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>在scripts文件夹中新建customized-build.js、overrides-config.base.js、overrides-config.dev.js、overrides-config.prod.js四个文件</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>安装rewire来实现运行时动态替换react-scripts //   yarn add rewire proxyquire –save</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>在customized-build.js中加入以下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var rewire = require(&apos;rewire&apos;);</span><br><span class="line">var proxyquire = require(&apos;proxyquire&apos;);</span><br><span class="line"></span><br><span class="line">switch(process.argv[2]) &#123;</span><br><span class="line">  case &apos;start&apos;: </span><br><span class="line">    rewireModule(&apos;react-scripts/scripts/start.js&apos;,</span><br><span class="line">     loadCustomizer(&apos;./overrides-config.dev&apos;));</span><br><span class="line">  break;</span><br><span class="line">  case &apos;build&apos;:</span><br><span class="line">    rewireModule(&apos;react-scripts/scripts/build.js&apos;, loadCustomizer(&apos;./overrides-config.prod&apos;));</span><br><span class="line">    break;</span><br><span class="line">  default:</span><br><span class="line">    console.log(&apos;customized-build only supports &quot;start&quot;, &quot;build&quot;, and &quot;test&quot; options.&apos;);</span><br><span class="line">    process.exit(-1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function loadCustomizer(module) &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    return require(module);</span><br><span class="line">  &#125; catch(e) &#123;</span><br><span class="line">    if(e.code !== &quot;MODULE_NOT_FOUND&quot;) &#123;</span><br><span class="line">      throw e;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // If the module doesn&apos;t exist, return a</span><br><span class="line">  // noop that simply returns the config it&apos;s given.</span><br><span class="line">  return config =&gt; config;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function rewireModule(modulePath, customizer) &#123;</span><br><span class="line">  // Load the module with `rewire`, which allows modifying the</span><br><span class="line">  // script&apos;s internal variables.</span><br><span class="line">  let defaults = rewire(modulePath);</span><br><span class="line"></span><br><span class="line">  // Reach into the module, grab its global &apos;config&apos; variable,</span><br><span class="line">  // and pass it through the customizer function.</span><br><span class="line">  // The customizer should *mutate* the config object, because</span><br><span class="line">  // react-scripts imports the config as a `const` and we can&apos;t</span><br><span class="line">  // modify that reference.</span><br><span class="line">  let config = defaults.__get__(&apos;config&apos;);</span><br><span class="line">  customizer(config);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>安装poststylus,autoprefixer只是其中的一个插件，yarn add poststylus -D开发环境替换配置：stylus 和 alias(也就是vue中的@路径别名)，在dev.js文件中引入以下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const baseConfig = require(&apos;./overrides-config.base&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = function(config) &#123;</span><br><span class="line">  let alias = config.resolve.alias;</span><br><span class="line">  alias[&quot;@&quot;] = baseConfig.rootPath;</span><br><span class="line">  let loaderList = config.module.rules[1].oneOf;</span><br><span class="line">  loaderList.splice(loaderList.length-1, 0, &#123;</span><br><span class="line">    test: /\.styl$/,</span><br><span class="line">    use: [&quot;style-loader&quot;, &quot;css-loader&quot;, &quot;stylus-loader&quot;]</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  config.plugins.push(baseConfig.stylusLoaderOptionsPlugin);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<p>在base.js文件中引入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const webpack = require(&apos;webpack&apos;)</span><br><span class="line">const poststylus = require(&apos;poststylus&apos;)</span><br><span class="line">const autoprefixer = require(&apos;autoprefixer&apos;)</span><br><span class="line">function resolve(dir) &#123;</span><br><span class="line">  return path.join(__dirname, &apos;..&apos;, dir);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports.rootPath = resolve(&apos;src&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">module.exports.stylusLoaderOptionsPlugin = new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">  options: &#123;</span><br><span class="line">    stylus: &#123;</span><br><span class="line">      use: [</span><br><span class="line">        poststylus([ </span><br><span class="line">          require(&apos;postcss-flexbugs-fixes&apos;),</span><br><span class="line">          autoprefixer(&#123;</span><br><span class="line">            browsers: [</span><br><span class="line">              &apos;&gt;1%&apos;,</span><br><span class="line">              &apos;last 4 versions&apos;,</span><br><span class="line">              &apos;Firefox ESR&apos;,</span><br><span class="line">              &apos;not ie &lt; 9&apos;, // React doesn&apos;t support IE8 anyway</span><br><span class="line">            ],</span><br><span class="line">            flexbox: &apos;no-2009&apos;,</span><br><span class="line">          &#125;)</span><br><span class="line">        ])</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><ol start="6">
+<li>安装stylus依赖，yarn add stylus stylus-loader –save</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>还需要创建一个config-overrides.prod.js文件具有相同的内容。开发过程中使用的是dev文件(例如npm start)，在构建期间使用prod文件(例如，npm run build)</li>
+</ol>
+</li>
+<li><ol start="8">
+<li>最后，要让这些新代码生效，你需要更改package.json，调用这些新的脚本，而不是默认的react-scripts的脚本。要做到这一点，可以用以下方法替换“start”、“build”和“test”<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;node scripts/customized-build start&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;node scripts/customized-build build&quot;,</span><br><span class="line">    &quot;test&quot;: &quot;node scripts/customized-build test --env=jsdom&quot;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>注意⚠️：每次修改配置文件都要重启一下yarn start</strong></p>
+
     </div>
 </article>
+
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'React定制webpack 工作流'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -329,25 +402,25 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/tags/javascript/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/07/22/rmusic/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/tags/javascript/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/07/22/rmusic/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/tags/javascript/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/07/22/rmusic/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/hexo/" style="font-size: 18.986360092714225px;" class="tag-cloud-link">hexo</a>
+    <a href="/tags/hexo/" style="font-size: 18.54427922050176px;" class="tag-cloud-link">hexo</a>
     
-    <a href="/tags/https/" style="font-size: 13.603515101609718px;" class="tag-cloud-link">https</a>
+    <a href="/tags/https/" style="font-size: 13.560082829094537px;" class="tag-cloud-link">https</a>
     
-    <a href="/tags/React/" style="font-size: 14.975849039638543px;" class="tag-cloud-link">React</a>
+    <a href="/tags/React/" style="font-size: 18.891742282778296px;" class="tag-cloud-link">React</a>
     
-    <a href="/tags/javascript/" style="font-size: 11.132651530004225px;" class="tag-cloud-link">javascript</a>
+    <a href="/tags/javascript/" style="font-size: 19.13659409399551px;" class="tag-cloud-link">javascript</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -454,7 +527,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     if(window.commentConfig) {
-      window.commentConfig.id = ''
+      window.commentConfig.id = 'Sun Jul 22 2018 15:01:05 GMT+0800'
       window.commentConfig.owner = 'LLZUPUP'
       window.commentConfig.repo = 'book_note'
       window.commentConfig.client_id = 'c025c72d8b98c6577a5b'
@@ -462,7 +535,7 @@
       window.commentConfig.redirect_uri = ''
     } else {
       window.commentConfig = {
-      	id: '',
+      	id: 'Sun Jul 22 2018 15:01:05 GMT+0800',
         owner: 'LLZUPUP',
         repo: 'book_note',
         client_id: 'c025c72d8b98c6577a5b',

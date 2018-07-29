@@ -22,13 +22,13 @@
     <link rel="alternative" href="/atom.xml" title="Lzzzz" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/assets/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
   
     #container.show {
-      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+      background: linear-gradient(200deg,#636363,#4682B4);
     }
   </style>
   
@@ -42,11 +42,11 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<div class="overlay" style="background: linear-gradient(to bottom,#4682B4,#636363)"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/myself.jpg" class="js-avatar">
+			<img src="/assets/img/litten.png" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Lzzzz</a></h1>
@@ -95,14 +95,14 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: linear-gradient(to bottom,#4682B4,#636363)"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/myself.jpg" class="js-avatar">
+				<img src="/assets/img/litten.png" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Lzzzz</h1>
@@ -180,74 +180,10 @@
 <blockquote>
 <p>let a = 111     //字面量，不是number 类型</p>
 </blockquote>
-<p>Object 是引用类型，就是复杂类型，在使用过程中会遇到 浅拷贝和深拷贝的问题。</p>
-<h3 id="Typeof"><a href="#Typeof" class="headerlink" title="Typeof"></a>Typeof</h3><p>typeof 对于基本类型来说，除了 null 都可以显示正确的类型 null的类型显示为object<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typeof 1      //&apos;number&apos;</span><br><span class="line">typeof &apos;1&apos;      //&apos;string&apos;</span><br><span class="line">typeof undefined      //&apos;undefined&apos;</span><br><span class="line">typeof true      //&apos;boolean&apos;</span><br><span class="line">typeof Symbol()      //&apos;symbol&apos;</span><br><span class="line">typeof b            //b 没有声明，但是还是会显示  undefined</span><br><span class="line">typeof null         //&apos;object&apos;</span><br></pre></td></tr></table></figure></p>
-<p>typeof 对于对象，除了函数都会显示 object<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">typeof []       //&apos;object&apos;</span><br><span class="line">typeof &#123;&#125;       //&apos;object&apos;</span><br><span class="line">typeof function()&#123;&#125;     //&apos;function&apos;</span><br></pre></td></tr></table></figure></p>
-<p>如果我们想要准确的获得一个变量的正确类型，可以通过 Object.prototype.toString.call(xx)。这样我们就能获得类似 [Object Type]的字符串。</p>
-<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p><strong>转Boolean</strong><br>除了 undefined, null, 0, false, ‘’, NaN, -0这七种，其他所有的值都为true，包括所有对象。<br><strong>对象转基本类型</strong><br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。 并且这两个方法也是可以重写的。</p>
-<p><strong>四则运算符</strong><br>如果是加法运算，其中一方是字符串类型，就会把另一个值也转为字符串类型。  其他运算只要其中一方是数字，那么另外一方就会被转为数字。</p>
-<blockquote>
-<ol>
-<li>[1, 2]+[2, 1]    //‘1,22,1’</li>
-<li>‘a’+ +’b’      //‘aNaN’</li>
-</ol>
-</blockquote>
-<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>每个函数都有 prototype 属性，除了 Function.prototype.bind()，该属性指向原型。</p>
-<p><strong>原型是什么？</strong></p>
-<p>在javascript中原型是一个prototype对象，用于表示类型之间的关系。</p>
-<p><strong>原型链是什么？</strong></p>
-<p>javascript中万物都是对象， 对象和对象之间也有关系，并不是孤立存在的。对象之间的继承关系，在javascript中是可以通过prototype对象指向父类对象，直到指向Object对象为止，这样就形成了一个原型指向的链条，叫做原型链。</p>
-<p>每个对象都有<strong>proto</strong>属性，指向创建该对象的构造函数的原型。 对象可以通过<strong>proto</strong> 来寻找不属于该对象的属性， <strong>proto</strong>将对象连接起来组成了原型链。</p>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><ol>
-<li>新生成了一个对象。</li>
-<li>链接到原型。</li>
-<li>绑定了this。</li>
-<li>返回新对象</li>
-</ol>
-<p>在调用 new 的过程中会发生以上四件事，我们试着自己来实现一个 new<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function create() &#123;</span><br><span class="line">  //  创建一个空的对象</span><br><span class="line">  let obj = new Object()</span><br><span class="line">  //  获得构造函数</span><br><span class="line">  let Con = [].shift.call(arguments)</span><br><span class="line">  //链接到原型</span><br><span class="line">  obj.__proto__ = Con.prototype</span><br><span class="line">  //绑定 this 执行构造函数</span><br><span class="line">  let result = Con.apply(obj, arguments)</span><br><span class="line">  //确保 new 出来的是个对象</span><br><span class="line">  return typeof result === &apos;object&apos;?result:obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>对于实例对象来说，都是通过new 产生的，无论是 function Foo() 还是 let a = { b: 1 }。</p>
-<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>instanceof 可以正确的判断对象的类型， 其内部机制是通过对象的原型链中是不是能找到类型的prototype。</p>
-<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>this永远指向最后调用他的那个对象。</p>
-<p>new的优先级最高</p>
-<p>其次是call, apply, bind 改变 this</p>
-<p>箭头函数的this是取决于上级不是箭头函数的函数的this</p>
-<h3 id="执行上下文-作用域"><a href="#执行上下文-作用域" class="headerlink" title="执行上下文(作用域)"></a>执行上下文(作用域)</h3><p>当执行 JS 代码时，会产生三种执行上下文</p>
-<ul>
-<li><ol>
-<li>全局执行上下文</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>函数执行上下文</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>eval执行上下文</li>
-</ol>
-</li>
-</ul>
-<p>变量提升： 函数 优先级 比变量 高。在提升的过程中，相同的函数会覆盖上一个函数。</p>
-<p>let不能在声明前使用，会报错</p>
-<h3 id="什么是闭包？"><a href="#什么是闭包？" class="headerlink" title="什么是闭包？"></a>什么是闭包？</h3><p>函数A 返回一个函数B，并且函数B中使用了函数A的变量，函数B就是闭包。</p>
-<h3 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;</span><br><span class="line">  age: 1</span><br><span class="line">&#125;</span><br><span class="line">let b = a</span><br><span class="line">a.age = 2</span><br><span class="line">console.log(b.age)      //2</span><br></pre></td></tr></table></figure>
-<p>如果把一个变量赋值给一个对象，那么两者的值会是同一个引用，其中一方改变，另一方也会相应的改变。</p>
-<p>通常我们不希望出现这样的问题，我们可以使用浅拷贝来解决这个问题。</p>
-<p><strong>浅拷贝</strong><br>可以用Object.assign来解决这个问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;</span><br><span class="line">  age: 1</span><br><span class="line">&#125;</span><br><span class="line">let b = Object.assign(&#123;&#125;, a)</span><br><span class="line">a.age = 2</span><br><span class="line">console.log(b.age)      //1</span><br></pre></td></tr></table></figure></p>
-<p>还可以通过展开运算符…来解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;</span><br><span class="line">  age: 1</span><br><span class="line">&#125;</span><br><span class="line">let b = &#123;</span><br><span class="line">  ...a</span><br><span class="line">&#125;</span><br><span class="line">a.age = 2</span><br><span class="line">console.log(b.age)    //1</span><br></pre></td></tr></table></figure></p>
-<p>但是当我们遇到如下情况就需要使用到深拷贝了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;</span><br><span class="line">  age: 1,</span><br><span class="line">  jobs: &#123;</span><br><span class="line">    first: &apos;FE&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let b = &#123;...a&#125;</span><br><span class="line">a.jobs.first = &apos;native&apos;</span><br><span class="line">console.log(b.jobs.first)     //native</span><br></pre></td></tr></table></figure></p>
-<p>如果接下去的值中还有对象的话，就需要引入深拷贝<br>JSON.parse(JSON.stringify(object))<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;</span><br><span class="line">  age: 1,</span><br><span class="line">  jobs: &#123;</span><br><span class="line">    first: &apos;EF&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let b = JSON.parse(JSON.stringify(a))</span><br><span class="line">a.jobs.first = &apos;native&apos;</span><br><span class="line">console.log(b.jobs.first)   //EF</span><br></pre></td></tr></table></figure></p>
-<h3 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h3><p>ES6<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">file a.js</span><br><span class="line">export function a() &#123;&#125;</span><br><span class="line">export function b() &#123;&#125;</span><br><span class="line">file b.js</span><br><span class="line">export default function() &#123;&#125;</span><br><span class="line"></span><br><span class="line">import &#123;a, b&#125; from &apos;./a.js&apos;</span><br><span class="line">import XXX from &apos;./b.js</span><br></pre></td></tr></table></figure></p>
-<h3 id="Common"><a href="#Common" class="headerlink" title="Common"></a>Common</h3><p>CommonJS 是Node独有的规范<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a.js</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  a: 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b.js</span><br><span class="line">var module = require(&apos;./a.js&apos;)</span><br><span class="line">module.a    //1</span><br></pre></td></tr></table></figure></p>
-<h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><p>AMD是由RequireJS 提出的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">define([&apos;./a&apos;, &apos;./b&apos;], function(a,b)&#123;</span><br><span class="line">  a.do()</span><br><span class="line">  b.do()</span><br><span class="line">&#125;)</span><br><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">  var a = require(&apos;./a&apos;)</span><br><span class="line">  a.doSomething()</span><br><span class="line">  var b = require(&apos;./b&apos;)</span><br><span class="line">  b.doSomething()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><p>在一段时间内的多次执行变成最后一次执行</p>
-<h3 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h3><p>将多次执行变成每隔一段时间执行</p>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>ES5模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function Super() &#123;&#125;</span><br><span class="line">Super.prototype.getNumber = function() &#123;</span><br><span class="line">  return 1</span><br><span class="line">&#125;</span><br><span class="line">function Sub() &#123;&#125;</span><br><span class="line">let s = new Sub()</span><br><span class="line">Sub.prototype = Object.create(Super.prototype, &#123;</span><br><span class="line">  constructor: &#123;</span><br><span class="line">    value: Sub,</span><br><span class="line">    enumerable: false,</span><br><span class="line">    writable: true,</span><br><span class="line">    configurable: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>以上继承实现思路就是将子类的原型设置为父类的原型</p>
-<p>ES6:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class MyDate extends Date &#123;</span><br><span class="line">  test () &#123;</span><br><span class="line">    return this.getTime()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let myDate = new MyDate()</span><br><span class="line">myDate.test()</span><br></pre></td></tr></table></figure></p>
-<h3 id="call-apply-bind区别"><a href="#call-apply-bind区别" class="headerlink" title="call,apply,bind区别"></a>call,apply,bind区别</h3><h3 id="Promise实现"><a href="#Promise实现" class="headerlink" title="Promise实现"></a>Promise实现</h3><p>Promise 是 ES6新增的语法，解决了回调地狱的问题。</p>
-<p>可以把Promise看成一个状态机。初始是pending状态，可以通过函数resolve 和 reject， 将状态转变为 resolved或者rejected 状态，状态一旦改变就不能再次变化。</p>
-<p>then 函数会返回一个Promise实例，并且该返回值是一个新的实例而不是之前的实例。</p>
-
+<p>Object 是引用类型，就是复杂类型，在使用过程中会遇到 浅拷贝和深拷贝的问题。<br>
+        
+          <a class="article-more-a" href="/2018/07/24/jssum/#more">more >></a>
+        
       
 
       
@@ -1102,7 +1038,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">不甘平庸&lt;br&gt;&lt;br&gt;自甘堕落</div>
   	  	
     	</section>
     

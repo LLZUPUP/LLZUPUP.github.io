@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="https://llzupup.github.io">
   <title>Lzzzz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="你看，那个人又偷偷溜走了..">
+  <meta name="description" content="礼物 - 3.8 	 	 	 	   	 	 		3.8节礼物，来了… 		 		 			 				 					首先，你要输入我的生日 					 					接着，摇一摇… 					 					最后，这就是见证奇迹的时刻… 				 				 					3.8节快乐！ 					祝身体健康,平安长乐 					请打开音量收听…">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lzzzz">
-<meta property="og:url" content="https://llzupup.github.io/about/index.html">
+<meta property="og:url" content="https://llzupup.github.io/assets/demo/gift/index.html">
 <meta property="og:site_name" content="Lzzzz">
-<meta property="og:description" content="你看，那个人又偷偷溜走了..">
+<meta property="og:description" content="礼物 - 3.8 	 	 	 	   	 	 		3.8节礼物，来了… 		 		 			 				 					首先，你要输入我的生日 					 					接着，摇一摇… 					 					最后，这就是见证奇迹的时刻… 				 				 					3.8节快乐！ 					祝身体健康,平安长乐 					请打开音量收听…">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-23T12:07:10.429Z">
+<meta property="og:image" content="https://llzupup.github.io/assets/demo/gift/img/shake.png">
+<meta property="og:updated_time" content="2018-07-29T04:33:37.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lzzzz">
-<meta name="twitter:description" content="你看，那个人又偷偷溜走了..">
+<meta name="twitter:description" content="礼物 - 3.8 	 	 	 	   	 	 		3.8节礼物，来了… 		 		 			 				 					首先，你要输入我的生日 					 					接着，摇一摇… 					 					最后，这就是见证奇迹的时刻… 				 				 					3.8节快乐！ 					祝身体健康,平安长乐 					请打开音量收听…">
+<meta name="twitter:image" content="https://llzupup.github.io/assets/demo/gift/img/shake.png">
   
     <link rel="alternative" href="/atom.xml" title="Lzzzz" type="application/atom+xml">
   
@@ -157,7 +159,88 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="你看，那个人又偷偷溜走了"><a href="#你看，那个人又偷偷溜走了" class="headerlink" title="你看，那个人又偷偷溜走了.."></a>你看，那个人又偷偷溜走了..</h4>
+        <!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
+	<title>礼物 - 3.8</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/zepto.min.js"></script>
+	<script src="js/shake.js"></script>
+</head>
+<body>
+	<!-- <div id="my_player"></div> -->
+	<header>
+		<p>3.8节礼物，来了…</p>
+		<div class="paper-t"></div>
+		<div class="main">
+			<div class="main-top top2">
+				<section id="se1">
+					<p>首先，你要输入我的生日</p>
+					<input id="myBir" type="text" placeholder="4位数，格式为:mmdd">
+					<p>接着，摇一摇…</p>
+					<img src="img/shake.png">
+					<p>最后，这就是见证奇迹的时刻…</p>
+				</section>
+				<section id="se2" class="hide">
+					<p>3.8节快乐！</p>
+					<p>祝身体健康,平安长乐</p>
+					<p>请打开音量收听…</p>
+				</section>
+			</div>
+		</div>
+		<div class="paper-b"></div>
+	</header>
+</body>
+	<script>
+		var Main = (function() {
+			function playAudio(src) {
+			    if (typeof Audio != "undefined") { 
+			        new Audio(src).play() ;
+			    } else if (typeof device != "undefined") {
+			        if (device.platform == 'Android') {
+			            console.log(src);
+			        }
+			        var mediaRes = new Media(src,
+			            function onSuccess() {
+			                mediaRes.release();
+			            },
+			            function onError(e){
+			                console.log("error playing sound: " + JSON.stringify(e));
+			            });
+			        mediaRes.play();
+
+			    } else {
+			        alert("no sound API to play: " + src);
+			    }
+			}
+			window.addEventListener('shake', autoRun, false);
+			function autoRun(){
+				if($("#myBir").val() == "0425"){
+					$("#se1").hide();
+					$("#se2").show();
+					playAudio("media/gift.ogg");
+				}else{
+					alert("生日错误");
+				}
+				
+			}
+			var init = function() {
+				
+			}
+			return {
+				init: init
+			}
+		})();
+
+		$(Main.init());
+	</script>
+</html>
       
 
       
@@ -246,7 +329,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://llzupup.github.io/about/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://llzupup.github.io/assets/demo/gift/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,7 +374,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://llzupup.github.io/about/index.html",
+  id: "https://llzupup.github.io/assets/demo/gift/index.html",
   owner: 'LLZUPUP',
   repo: 'book_note',
   oauth: {

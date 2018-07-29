@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lzzzz">
 <meta property="og:description" content="内置类型JS中分为七种内置类型，七种内置类型又分为两大类型：基本类型和对象(Object) 基本类型有六种：null, undefined, boolean, number, string, symbol。 其中JS的数字类型是浮点类型的，没有整形。并且浮点类型基于IEEE 754标准实现，在使用中会遇到某些BUG。 NaN 也属于 number 类型，并且NaN 不等于自身。 NaN == Na">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-29T04:58:47.543Z">
+<meta property="og:updated_time" content="2018-07-29T05:28:14.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端综合总结">
 <meta name="twitter:description" content="内置类型JS中分为七种内置类型，七种内置类型又分为两大类型：基本类型和对象(Object) 基本类型有六种：null, undefined, boolean, number, string, symbol。 其中JS的数字类型是浮点类型的，没有整形。并且浮点类型基于IEEE 754标准实现，在使用中会遇到某些BUG。 NaN 也属于 number 类型，并且NaN 不等于自身。 NaN == Na">
@@ -177,10 +177,11 @@
 <p>基本类型有六种：null, undefined, boolean, number, string, symbol。</p>
 <p>其中JS的数字类型是浮点类型的，没有整形。并且浮点类型基于IEEE 754标准实现，在使用中会遇到某些BUG。 NaN 也属于 number 类型，并且NaN 不等于自身。 NaN == NaN //false </p>
 <p>对于基本类型来说，如果使用字面量的方式，那么这个变量只是个字面量，只有在必要的时候才会转换为对应的类型。</p>
+<a id="more"></a>
 <blockquote>
 <p>let a = 111     //字面量，不是number 类型</p>
 </blockquote>
-<p>Object 是引用类型，就是复杂类型，在使用过程中会遇到 浅拷贝和深拷贝的问题。<br><a id="more"></a></p>
+<p>Object 是引用类型，就是复杂类型，在使用过程中会遇到 浅拷贝和深拷贝的问题。</p>
 <h3 id="Typeof"><a href="#Typeof" class="headerlink" title="Typeof"></a>Typeof</h3><p>typeof 对于基本类型来说，除了 null 都可以显示正确的类型 null的类型显示为object<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typeof 1      //&apos;number&apos;</span><br><span class="line">typeof &apos;1&apos;      //&apos;string&apos;</span><br><span class="line">typeof undefined      //&apos;undefined&apos;</span><br><span class="line">typeof true      //&apos;boolean&apos;</span><br><span class="line">typeof Symbol()      //&apos;symbol&apos;</span><br><span class="line">typeof b            //b 没有声明，但是还是会显示  undefined</span><br><span class="line">typeof null         //&apos;object&apos;</span><br></pre></td></tr></table></figure></p>
 <p>typeof 对于对象，除了函数都会显示 object<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">typeof []       //&apos;object&apos;</span><br><span class="line">typeof &#123;&#125;       //&apos;object&apos;</span><br><span class="line">typeof function()&#123;&#125;     //&apos;function&apos;</span><br></pre></td></tr></table></figure></p>
 <p>如果我们想要准确的获得一个变量的正确类型，可以通过 Object.prototype.toString.call(xx)。这样我们就能获得类似 [Object Type]的字符串。</p>

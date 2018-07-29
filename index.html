@@ -177,10 +177,6 @@
 <p>基本类型有六种：null, undefined, boolean, number, string, symbol。</p>
 <p>其中JS的数字类型是浮点类型的，没有整形。并且浮点类型基于IEEE 754标准实现，在使用中会遇到某些BUG。 NaN 也属于 number 类型，并且NaN 不等于自身。 NaN == NaN //false </p>
 <p>对于基本类型来说，如果使用字面量的方式，那么这个变量只是个字面量，只有在必要的时候才会转换为对应的类型。</p>
-<blockquote>
-<p>let a = 111     //字面量，不是number 类型</p>
-</blockquote>
-<p>Object 是引用类型，就是复杂类型，在使用过程中会遇到 浅拷贝和深拷贝的问题。<br>
         
           <a class="article-more-a" href="/2018/07/24/jssum/#more">more >></a>
         
@@ -257,12 +253,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="上篇知道了如何自定义配置webpack-接下来就让我们用简单一些的方法来实现使用stylus等功能。"><a href="#上篇知道了如何自定义配置webpack-接下来就让我们用简单一些的方法来实现使用stylus等功能。" class="headerlink" title="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。"></a>上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。</h3><p><strong>安装stylus依赖：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add stylus stylus-loader</span><br></pre></td></tr></table></figure></p>
-<p><strong>在webpack配置依赖，如果要手动配置webpack的话，React必须先把配置Eject出来：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn run eject</span><br></pre></td></tr></table></figure></p>
-<p><strong>react-cli会询问你是否执行操作，并提示你这个操作是不可逆的。</strong><br>输入y继续<br><br>这个时候如果eject的该项目是在本地的一个git仓库里的，而且这个仓库里还有文件未上传到远程。那么恭喜你，你eject会失败，它会告诉你必须要把本地这个仓库里的文件未更改的状态下才能把webpack配置eject出来。<br><br><br><strong>成功以后项目根目录下会弹射出一个config文件夹和一个scripts文件夹，同时package.json里的相关配置也会改变</strong><br><br><br>在弹射出来的config文件夹下找到webpack.config.dev.js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">找到module.rules.oneOf,里面有一个css的配置项，把styl加进去:</span><br><span class="line">test: /\.(css|styl)$/,</span><br><span class="line">然后在use中加入以下配置代码：</span><br><span class="line">&#123;</span><br><span class="line">  loader: require.resolve(&apos;stylus-loader&apos;),</span><br><span class="line">  options: &#123;</span><br><span class="line">    sourceMap: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">滑到oneOf的最下面，找到exclude，将styl加进去：</span><br><span class="line">exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/,/\.styl$/],</span><br></pre></td></tr></table></figure></p>
-<p><strong>然后记住要重新yarn安装一下依赖，最后输入yarn start就能成功启动了(可以直接引入styl文件)，这个时候还会出现一个postcss的提示，原来他是一个强大的东西，autoprefixer也只是他其中的一个插件</strong><br>安装postcss-loader:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add postcss-loader</span><br></pre></td></tr></table></figure></p>
-<p><em>最后就会惊喜的发现关于css的浏览器兼容性问题的浏览器前缀会自动帮你加上</em></p>
-<p><a href="https://github.com/LLZUPUP/React/tree/master/test" target="_blank" rel="noopener">我的demo地址</a></p>
-
+        
+          <a class="article-more-a" href="/2018/07/22/eject/#more">more >></a>
+        
       
 
       
@@ -344,39 +337,10 @@
 <li>在scripts文件夹中新建customized-build.js、overrides-config.base.js、overrides-config.dev.js、overrides-config.prod.js四个文件</li>
 </ol>
 </li>
-<li><ol start="3">
-<li>安装rewire来实现运行时动态替换react-scripts //   yarn add rewire proxyquire –save</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>在customized-build.js中加入以下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var rewire = require(&apos;rewire&apos;);</span><br><span class="line">var proxyquire = require(&apos;proxyquire&apos;);</span><br><span class="line"></span><br><span class="line">switch(process.argv[2]) &#123;</span><br><span class="line">  case &apos;start&apos;: </span><br><span class="line">    rewireModule(&apos;react-scripts/scripts/start.js&apos;,</span><br><span class="line">     loadCustomizer(&apos;./overrides-config.dev&apos;));</span><br><span class="line">  break;</span><br><span class="line">  case &apos;build&apos;:</span><br><span class="line">    rewireModule(&apos;react-scripts/scripts/build.js&apos;, loadCustomizer(&apos;./overrides-config.prod&apos;));</span><br><span class="line">    break;</span><br><span class="line">  default:</span><br><span class="line">    console.log(&apos;customized-build only supports &quot;start&quot;, &quot;build&quot;, and &quot;test&quot; options.&apos;);</span><br><span class="line">    process.exit(-1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function loadCustomizer(module) &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    return require(module);</span><br><span class="line">  &#125; catch(e) &#123;</span><br><span class="line">    if(e.code !== &quot;MODULE_NOT_FOUND&quot;) &#123;</span><br><span class="line">      throw e;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // If the module doesn&apos;t exist, return a</span><br><span class="line">  // noop that simply returns the config it&apos;s given.</span><br><span class="line">  return config =&gt; config;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function rewireModule(modulePath, customizer) &#123;</span><br><span class="line">  // Load the module with `rewire`, which allows modifying the</span><br><span class="line">  // script&apos;s internal variables.</span><br><span class="line">  let defaults = rewire(modulePath);</span><br><span class="line"></span><br><span class="line">  // Reach into the module, grab its global &apos;config&apos; variable,</span><br><span class="line">  // and pass it through the customizer function.</span><br><span class="line">  // The customizer should *mutate* the config object, because</span><br><span class="line">  // react-scripts imports the config as a `const` and we can&apos;t</span><br><span class="line">  // modify that reference.</span><br><span class="line">  let config = defaults.__get__(&apos;config&apos;);</span><br><span class="line">  customizer(config);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>安装poststylus,autoprefixer只是其中的一个插件，yarn add poststylus -D开发环境替换配置：stylus 和 alias(也就是vue中的@路径别名)，在dev.js文件中引入以下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const baseConfig = require(&apos;./overrides-config.base&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = function(config) &#123;</span><br><span class="line">  let alias = config.resolve.alias;</span><br><span class="line">  alias[&quot;@&quot;] = baseConfig.rootPath;</span><br><span class="line">  let loaderList = config.module.rules[1].oneOf;</span><br><span class="line">  loaderList.splice(loaderList.length-1, 0, &#123;</span><br><span class="line">    test: /\.styl$/,</span><br><span class="line">    use: [&quot;style-loader&quot;, &quot;css-loader&quot;, &quot;stylus-loader&quot;]</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  config.plugins.push(baseConfig.stylusLoaderOptionsPlugin);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
 </ul>
-<p>在base.js文件中引入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const webpack = require(&apos;webpack&apos;)</span><br><span class="line">const poststylus = require(&apos;poststylus&apos;)</span><br><span class="line">const autoprefixer = require(&apos;autoprefixer&apos;)</span><br><span class="line">function resolve(dir) &#123;</span><br><span class="line">  return path.join(__dirname, &apos;..&apos;, dir);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports.rootPath = resolve(&apos;src&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">module.exports.stylusLoaderOptionsPlugin = new webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">  options: &#123;</span><br><span class="line">    stylus: &#123;</span><br><span class="line">      use: [</span><br><span class="line">        poststylus([ </span><br><span class="line">          require(&apos;postcss-flexbugs-fixes&apos;),</span><br><span class="line">          autoprefixer(&#123;</span><br><span class="line">            browsers: [</span><br><span class="line">              &apos;&gt;1%&apos;,</span><br><span class="line">              &apos;last 4 versions&apos;,</span><br><span class="line">              &apos;Firefox ESR&apos;,</span><br><span class="line">              &apos;not ie &lt; 9&apos;, // React doesn&apos;t support IE8 anyway</span><br><span class="line">            ],</span><br><span class="line">            flexbox: &apos;no-2009&apos;,</span><br><span class="line">          &#125;)</span><br><span class="line">        ])</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><ol start="6">
-<li>安装stylus依赖，yarn add stylus stylus-loader –save</li>
-</ol>
-</li>
-<li><ol start="7">
-<li>还需要创建一个config-overrides.prod.js文件具有相同的内容。开发过程中使用的是dev文件(例如npm start)，在构建期间使用prod文件(例如，npm run build)</li>
-</ol>
-</li>
-<li><ol start="8">
-<li>最后，要让这些新代码生效，你需要更改package.json，调用这些新的脚本，而不是默认的react-scripts的脚本。要做到这一点，可以用以下方法替换“start”、“build”和“test”<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;node scripts/customized-build start&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;node scripts/customized-build build&quot;,</span><br><span class="line">    &quot;test&quot;: &quot;node scripts/customized-build test --env=jsdom&quot;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ul>
-<p><strong>注意⚠️：每次修改配置文件都要重启一下yarn start</strong></p>
-
+        
+          <a class="article-more-a" href="/2018/07/22/rmusic/#more">more >></a>
+        
       
 
       
@@ -451,17 +415,9 @@
       
         <p>HTTP实现原理：<a href="https://mp.weixin.qq.com/s/StqqafHePlBkWAPQZg3NrA" target="_blank" rel="noopener">一个故事讲完https</a></p>
 <h3 id="什么是-HTTPS"><a href="#什么是-HTTPS" class="headerlink" title="什么是 HTTPS"></a>什么是 HTTPS</h3><p>HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。 现在它被广泛用于万维网上安全敏感的通讯，例如交易支付方面。</p>
-<h3 id="HTTP-与-HTTPS-的区别"><a href="#HTTP-与-HTTPS-的区别" class="headerlink" title="HTTP 与 HTTPS 的区别"></a>HTTP 与 HTTPS 的区别</h3><ol>
-<li>HTTP 是明文传输，HTTPS 通过 SSL\TLS 进行了加密</li>
-<li>HTTP 的端口号是 80，HTTPS 是 443</li>
-<li>HTTPS 需要到 CA 申请证书，一般免费证书很少，需要交费</li>
-<li>HTTPS 的连接很简单，是无状态的；HTTPS 协议是由 SSL+HTTP 协议构建的可进行加密传输、身份认证的网络协议，比 HTTP 协议安全。</li>
-</ol>
-<h3 id="为什么要使用-HTTPS"><a href="#为什么要使用-HTTPS" class="headerlink" title="为什么要使用 HTTPS"></a>为什么要使用 HTTPS</h3><ol>
-<li>建立一个信息安全通道，来保证数据传输的安全</li>
-<li>确认网站的真实性，防止钓鱼网站</li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2018/07/21/https/#more">more >></a>
+        
       
 
       
@@ -546,31 +502,9 @@
 <li>使用apply、call、bind</li>
 <li>使用new来实例化一个对象</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var habit = &quot;sing&quot;;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">  habit: &quot;dance&quot;,</span><br><span class="line"></span><br><span class="line">  func1: function() &#123;</span><br><span class="line">    console.log(this.habit)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  func2: function() &#123;</span><br><span class="line">    setTimeout( function () &#123;</span><br><span class="line">      this.func1()</span><br><span class="line">    &#125;,1000)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">xiaoming.func2()      //this.func1 is not a function</span><br></pre></td></tr></table></figure>
-<p><br><br>上述题中很多人会想当然的觉得答案是输出”dance”，然而在不使用箭头函数的情况下，是会报错的。<br><br>因为在this.func1()中的作用域是在setTimeout中而不是在func2中，因此最后调用 setTimeout 的对象是window，window中不存在func1函数，所以报错了</p>
-<h4 id="1-箭头函数"><a href="#1-箭头函数" class="headerlink" title="1. 箭头函数"></a>1. 箭头函数</h4><p><strong>众所周知，ES6的箭头函数是可以避免ES5中使用this所遇到的指向错误的坑的。箭头函数的this始终指向上层作用域的this。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var habit = &quot;sing&quot;;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">  habit: &quot;dance&quot;,</span><br><span class="line"></span><br><span class="line">  func1: function() &#123;</span><br><span class="line">    console.log(this.habit)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  func2: function() &#123;</span><br><span class="line">    setTimeout( ()=&gt; &#123;</span><br><span class="line">      this.func1()</span><br><span class="line">    &#125;,1000)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.func2()    //dance</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-在函数内部定义一个-that-this"><a href="#2-在函数内部定义一个-that-this" class="headerlink" title="2. 在函数内部定义一个 that = this"></a>2. 在函数内部定义一个 that = this</h3><p><strong>如果不使用箭头函数，那通常我们都会选择这种简单的方法，先在函数内部定义一个that，来把this的指向赋值给它，然后在这个函数的内部都使用这个that，这样this的指向就不会改变了。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var habit = &quot;sing&quot;;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">  habit: &quot;dance&quot;,</span><br><span class="line"></span><br><span class="line">  func1: function() &#123;</span><br><span class="line">    console.log(this.habit)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  func2: function() &#123;</span><br><span class="line">    var that = this;</span><br><span class="line">    setTimeout( function() &#123;</span><br><span class="line">      that.func1()</span><br><span class="line">    &#125;,1000)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.func2()    //dance</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h3 id="3-使用apply、call、bind"><a href="#3-使用apply、call、bind" class="headerlink" title="3. 使用apply、call、bind"></a>3. 使用apply、call、bind</h3><p><strong>使用apply、call、bind函数也是可以改变this的指向的</strong></p>
-<h4 id="使用apply"><a href="#使用apply" class="headerlink" title="使用apply"></a>使用apply</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var habit = &quot;sing&quot;;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">  habit: &quot;dance&quot;,</span><br><span class="line"></span><br><span class="line">  func1: function() &#123;</span><br><span class="line">    console.log(this.habit)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  func2: function() &#123;</span><br><span class="line">    setTimeout( function() &#123;</span><br><span class="line">      this.func1()</span><br><span class="line">    &#125;.apply(xiaoming),1000)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.func2()    //dance</span><br></pre></td></tr></table></figure>
-<h4 id="使用call"><a href="#使用call" class="headerlink" title="使用call"></a>使用call</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var habit = &quot;sing&quot;;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">  habit: &quot;dance&quot;,</span><br><span class="line"></span><br><span class="line">  func1: function() &#123;</span><br><span class="line">    console.log(this.habit)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  func2: function() &#123;</span><br><span class="line">    setTimeout( function() &#123;</span><br><span class="line">      this.func1()</span><br><span class="line">    &#125;.call(xiaoming),1000)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.func2()    //dance</span><br></pre></td></tr></table></figure>
-<h4 id="使用bind"><a href="#使用bind" class="headerlink" title="使用bind"></a>使用bind</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var habit = &quot;sing&quot;;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">  habit: &quot;dance&quot;,</span><br><span class="line"></span><br><span class="line">  func1: function() &#123;</span><br><span class="line">    console.log(this.habit)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  func2: function() &#123;</span><br><span class="line">    setTimeout( function() &#123;</span><br><span class="line">      this.func1()</span><br><span class="line">    &#125;.bind(xiaoming)(),1000)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.func2()    //dance</span><br></pre></td></tr></table></figure>
-<h4 id="apply、call、bind区别"><a href="#apply、call、bind区别" class="headerlink" title="apply、call、bind区别"></a>apply、call、bind区别</h4><blockquote>
-<p>apply和call的区别:<br>其实apply和call的区别不大，只是参入的第二个参数类型不同。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">call:</span><br><span class="line"></span><br><span class="line">var a = &#123;</span><br><span class="line">  name: &quot;123&quot;,</span><br><span class="line">  fn: function (a,b) &#123;</span><br><span class="line">    console.log( a + b )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = a.fn</span><br><span class="line">b.call(a,1,2)   //3</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apply: </span><br><span class="line"></span><br><span class="line">var a = &#123;</span><br><span class="line">  name: &quot;123&quot;,</span><br><span class="line">  fn: function (a,b) &#123;</span><br><span class="line">    console.log( a + b )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = a.fn</span><br><span class="line">b.apply(a,[1,2])   //3</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bind:</span><br><span class="line">var a = &#123;</span><br><span class="line">  name: &quot;123&quot;,</span><br><span class="line">  fn: function (a,b) &#123;</span><br><span class="line">    console.log( a + b )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = a.fn</span><br><span class="line">b.bind(a,1,2)</span><br></pre></td></tr></table></figure>
-<p><br><br><strong>我们发现bind并没有输出，因为bind()方法是会创建一个新的函数，所以我们必须要手动去调用：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;</span><br><span class="line">  name: &quot;123&quot;,</span><br><span class="line">  fn: function (a,b) &#123;</span><br><span class="line">    console.log( a + b )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = a.fn</span><br><span class="line">b.bind(a,1,2)()   //3</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="JS中的函数调用方式"><a href="#JS中的函数调用方式" class="headerlink" title="JS中的函数调用方式"></a>JS中的函数调用方式</h2><p><strong>JS中一共有4种调用方式：</strong></p>
-<ol>
-<li>作为一个函数调用</li>
-<li>函数作为对象中的方法调用</li>
-<li>使用new构造函数调用函数</li>
-<li>作为函数方法调用函数(call、apply)</li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2018/07/20/this/#more">more >></a>
+        
       
 
       
@@ -645,74 +579,9 @@
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>React作为Facebook 内部开发 Instagram 的项目中，是一个用来构建用户界面的优秀 JS 库，于 2013 年 5 月开源。作为前端的三大框架之一，React的应用可以说是非常的广泛，包括BAT在内的许多大公司很多项目都是基于其开发的。</strong></p>
 <p><strong>Vue：除了VDom之外，Vue的响应性能和React相比还是有很大的区别，无论是本身的语法层面还是外围的第三方支持软件，总之，迁移起来不会是那么容易的事情。</strong> </p>
-<h4 id="但是作为一名热爱前端的技术人员-学习优秀的技术栈仿佛已经成了一种习惯-在这里结合阮一峰React以及对阮一峰老师15年的教程进行版本更新-简单介绍一下React的入门-本文中所有demo代码都以图片形式展示-目的是建议手打尝试，而不是直接复制，如需代码可以点击这里。"><a href="#但是作为一名热爱前端的技术人员-学习优秀的技术栈仿佛已经成了一种习惯-在这里结合阮一峰React以及对阮一峰老师15年的教程进行版本更新-简单介绍一下React的入门-本文中所有demo代码都以图片形式展示-目的是建议手打尝试，而不是直接复制，如需代码可以点击这里。" class="headerlink" title="但是作为一名热爱前端的技术人员,学习优秀的技术栈仿佛已经成了一种习惯,在这里结合阮一峰React以及对阮一峰老师15年的教程进行版本更新,简单介绍一下React的入门,本文中所有demo代码都以图片形式展示,目的是建议手打尝试，而不是直接复制，如需代码可以点击这里。"></a>但是作为一名热爱前端的技术人员,学习优秀的技术栈仿佛已经成了一种习惯,在这里结合<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="noopener">阮一峰React</a>以及对阮一峰老师15年的教程进行版本更新,简单介绍一下React的入门,本文中所有demo代码都以图片形式展示,目的是建议手打尝试，而不是直接复制，如需代码可以点击<a href="https://github.com/LLZUPUP/React" target="_blank" rel="noopener">这里</a>。</h4><h3 id="使用-create-react-app-快速构建-React-开发环境"><a href="#使用-create-react-app-快速构建-React-开发环境" class="headerlink" title="使用 create-react-app 快速构建 React 开发环境"></a>使用 create-react-app 快速构建 React 开发环境</h3><p>create-react-app 是来自于 Facebook，通过该命令我们无需配置就能快速构建 React 开发环境。</p>
-<p>create-react-app 自动创建的项目是基于 Webpack + ES6 。</p>
-<ul>
-<li>yarn add create-react-app -g</li>
-<li>create-react-app projectName</li>
-<li>cd projectName</li>
-<li>yarn start</li>
-</ul>
-<p>然后打开浏览器输入<a href="http://localhost:3000/,就可以看到React的六芒星LOGO了。" target="_blank" rel="noopener">http://localhost:3000/,就可以看到React的六芒星LOGO了。</a><br><strong>以下是React重要的部分</strong></p>
-<blockquote>
-<p>JSX – 允许我们编写类似HTML的语法 转换为lightweightJavaScript对象。<br>虚拟DOM – 实际DOM的JavaScript表示。<br>React.Component – 您创建新组件的方式<br>render（方法） – 描述特定组件的 UI 外观 。<br>ReactDOM.render – 将React组件渲染到DOM节点。<br>state – 组件的内部数据存储（对象）。<br>constructor（this.state） – 建立组件初始 state(状态) 的方式。<br>setState – 一种辅助方法，用于更新组件的 state(状态) 并重新渲染 UI。<br>props – 从父组件传递给子组件的数据。<br>propTypes – 允许您控制传递给子组件的某些 props(属性) 的存在或类型。<br>defaultProps – 允许您为组件设置默认 props(属性) 。</p>
-</blockquote>
-<blockquote>
-<p>组件的生命周期<br>componentDidMount – 装载组件后触发<br>componentWillUnmount – 在组件卸载之前触发<br>getDerivedStateFromProps – 当组件装载时以及每当props 更改时触发。 用于在其 props(属性) 更改时更新组件的状态</p>
-</blockquote>
-<blockquote>
-<p>事件<br>onClick<br>onSubmit<br>onChange</p>
-</blockquote>
-<hr>
-<h3 id="React的JSX语法"><a href="#React的JSX语法" class="headerlink" title="React的JSX语法"></a>React的JSX语法</h3><p><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b24c14c09b349?w=619&amp;h=471&amp;f=jpeg&amp;s=46280" alt=""><br><strong>HTML 语言直接写在 JavaScript 语言之中，不加任何引号，这就是 JSX 的语法，它允许 HTML 与 JavaScript 的混写</strong></p>
-<blockquote>
-<p>因为React没有vue那样的v-for一键循环，所以要自己手动用map来实现<br>效果图:<img src="https://user-gold-cdn.xitu.io/2018/7/19/164b24e98add51c7?w=232&amp;h=73&amp;f=jpeg&amp;s=12714" alt=""></p>
-</blockquote>
-<hr>
-<h3 id="React组件嵌套组件以及数据传递子组件"><a href="#React组件嵌套组件以及数据传递子组件" class="headerlink" title="React组件嵌套组件以及数据传递子组件"></a>React组件嵌套组件以及数据传递子组件</h3><p><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b25c37580c7c7?w=469&amp;h=601&amp;f=jpeg&amp;s=58294" alt=""><br>vue通过子组件中的props来传递数据,而React则是用this.props.attr来传递，<strong>注意，没有$符号!</strong><br><strong>组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。另外，组件类只能包含一个顶层标签，否则也会报错。</strong></p>
-<blockquote>
-<p>JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员.我们定义了一个arr,里面是2个标题标签,通过在ul模板中添加{arr}来实现效果<strong>(注意不是vue的””，两者不要搞混了)</strong><br><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b261ea66b3dd7?w=362&amp;h=151&amp;f=jpeg&amp;s=23303" alt=""></p>
-</blockquote>
-<hr>
-<h3 id="this-props-children"><a href="#this-props-children" class="headerlink" title="this.props.children"></a>this.props.children</h3><p>this.props.attr是取到组件传递过来的数据或属性，而this.props.children则表示组件的所有子节点,可以通过this.props.children.map来遍历出来验证。<br><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b2692af287a1b?w=861&amp;h=567&amp;f=jpeg&amp;s=71907" alt=""><br><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b269fbed68add?w=574&amp;h=54&amp;f=jpeg&amp;s=11292" alt=""></p>
-<hr>
-<h3 id="React之PropTypes"><a href="#React之PropTypes" class="headerlink" title="React之PropTypes"></a>React之PropTypes</h3><p>组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。</p>
-<p>组件类的PropTypes属性，就是用来验证组件实例的属性是否符合要求</p>
-<blockquote>
-<p>yarn add prop-types<br>import PropTypes from ‘prop-types’</p>
-</blockquote>
-<p><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b27060f89edc2?w=405&amp;h=524&amp;f=jpeg&amp;s=51899" alt=""><br>MyTitle中有一个title属性，他的值为一个字符串，我们可以通过MyTitle.propTypes来定义该组件中属性的类型.如果将title: PropTypes.string改为其他类型，就会报以下的错误。<br><img src="https://user-gold-cdn.xitu.io/2018/7/19/164b2733fef90be0?w=874&amp;h=135&amp;f=jpeg&amp;s=35842" alt=""></p>
-<h3 id="React之ref"><a href="#React之ref" class="headerlink" title="React之ref"></a>React之ref</h3><p>同vue的ref作用一样，组件并不是真实的DOM节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。<br><br>但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性。<br>图片放的太多了，在这里贴一下代码..请忽视开头说的话..<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class App extends Component &#123;</span><br><span class="line">  handleClick () &#123;</span><br><span class="line">    this.refs.myTextInput.focus()</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">        &lt;LikeButton/&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; ref=&quot;myTextInput&quot;/&gt;</span><br><span class="line">        &lt;input type=&quot;button&quot; value=&quot;Focus the text input&quot; onClick=&#123; this.handleClick.bind(this) &#125;/&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>在这里需要强调的是，React的事件中如果不用剪头函数，那就要用bind来绑定this。</strong></p>
-<hr>
-<h3 id="React之this-state以及点击事件"><a href="#React之this-state以及点击事件" class="headerlink" title="React之this.state以及点击事件"></a>React之this.state以及点击事件</h3><p>React中的state就相当于vue里的data数据存储,而小程序的this.setData,大家懂的..</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class LikeButton extends Component &#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    liked: false</span><br><span class="line">  &#125;</span><br><span class="line">  handleClick () &#123;</span><br><span class="line">    // console.log(this)</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      liked: !this.state.liked</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const text = this.state.liked?&apos;liked&apos;:&apos;don\&apos;t like&apos;</span><br><span class="line">    return (</span><br><span class="line">      &lt;p onClick=&#123; () =&gt; this.handleClick() &#125;&gt;</span><br><span class="line">        You &#123; text &#125; this.click to toggle</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这里定义一个text变量，通过state中的liked来判断text的值，然后再通过onClick点击事件来反复改变liked的值，效果可以自己通过代码实现看看，就是普通的MVVM模型。</p>
-<hr>
-<h3 id="React之实现双向数据绑定"><a href="#React之实现双向数据绑定" class="headerlink" title="React之实现双向数据绑定"></a>React之实现双向数据绑定</h3><p>vue里面v-model一键实现的事情React又没有-0-，不过我们可以通过onChange事件来简单实现它，直接上代码.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class App extends Component &#123;</span><br><span class="line">  state= &#123;</span><br><span class="line">    value: &apos;Hello!&apos;</span><br><span class="line">  &#125;</span><br><span class="line">  handleChange (event) &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      value: event.target.value</span><br><span class="line">    &#125;)  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const val = this.state.value</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;App&quot;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;input type=&quot;text&quot; value=&#123;val&#125; onChange=&#123;this.handleChange.bind(this)&#125;/&gt;</span><br><span class="line">          &lt;p&gt;&#123; val &#125;&lt;/p&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="React之组件生命周期"><a href="#React之组件生命周期" class="headerlink" title="React之组件生命周期"></a>React之组件生命周期</h3><p>组件的生命周期分成三个状态：</p>
-<ul>
-<li>Mounting：已插入真实 DOM</li>
-<li>Updating：正在被重新渲染</li>
-<li>Unmounting：已移出真实 DOM</li>
-</ul>
-<p>React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。</p>
-<ul>
-<li>componentWillMount(): 在插入真实DOM之前调用</li>
-<li>componentDidMount(): 在插入真实DOM之后调用</li>
-<li>componentWillUpdate(object nextProps,object nextState): 在被重新渲染之前调用</li>
-<li>componentDidUpdate(object prevProps, object prevState): 在被重新渲染之后调用</li>
-<li>componentWillUnmount(): 在移除真实DOM之前调用</li>
-</ul>
-<p>此外，React 还提供两种特殊状态的处理函数。</p>
-<ul>
-<li>componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用</li>
-<li>shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用</li>
-</ul>
-<p>另外，组件的style属性的设置方式也值得注意，不能写成<code>style=&quot;opacity:{this.state.opacity};&quot;`而要写成`style={`{opacity: this.state.opacity}`}</code></p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>作为一个前端程序猿很不容易，前端的技术更新太快，都出现了“别更新了，老子学不动了”这类前端的梗。不过前端层出不穷的技术让我们看到了前端的未来，我们都是热于分享的人，希望正在学习的我也能够帮助到正在学习的你。  这些demo都在我的<a href="https://github.com/LLZUPUP/React" target="_blank" rel="noopener">github</a>,感兴趣的朋友可以clone下来看下，最近搭了一个<a href="https://llzupup.github.io/">个人blog</a>,欢迎来踩，PC端主题一股科幻风有没有！！主题来自于<a href="https://github.com/ZEROKISEKI/hexo-theme-gal" target="_blank" rel="noopener">hexo主题</a><br>最后说一句！很重要！如果我的这篇文章帮助到了你，那你可以点个star再走嘛~一起upupup!!!</p>
-
+        
+          <a class="article-more-a" href="/2018/07/19/react/#more">more >></a>
+        
       
 
       
@@ -790,50 +659,9 @@
 <p>1.git <br>2.node <br>3.个人github配置</p>
 </blockquote>
 <p>安装完上面几大重要东西以后，hexo的搭建开始进入正轨。</p>
-<h4 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h4><ol>
-<li>在vscode中本地创建一个文件夹blog文件夹，cd进入该目录，<strong>里面必须是空的!</strong></li>
-<li>在vscode中打开终端（命令行）,输入npm install -g hexo 或者 yarn add hexo -g</li>
-<li>安装完成以后输入hexo -v会显示hexo的相关信息</li>
-<li>此时hexo应已安装完成，在该目录下执行hexo init进行hexo初始化以及安装依赖，就会有下列文件产生。</li>
-</ol>
-<p><img src="https://user-gold-cdn.xitu.io/2018/7/19/164ae5a129208749?w=474&amp;h=177&amp;f=png&amp;s=5759" alt="hexo"></p>
-<ul>
-<li>node_modules：是依赖包</li>
-<li>public：存放的是生成的页面</li>
-<li>scaffolds：命令生成文章等的模板</li>
-<li>source：用命令创建的各种文章</li>
-<li>themes：主题</li>
-<li>_config.yml：整个博客的配置</li>
-<li>db.json：source解析所得到的</li>
-<li>package.json：项目所需模块项目的配置信息</li>
-</ul>
-<hr>
-<h4 id="github创建一个hexo的repo"><a href="#github创建一个hexo的repo" class="headerlink" title="github创建一个hexo的repo"></a>github创建一个hexo的repo</h4><p><strong>repo的仓库名必须是yourname.github.io这个格式，其中yourname是github个人账号名</strong><br>创建好以后，打开blog文件夹下的_config.yml配置文件，找到以下：</p>
-<blockquote>
-<p>deploy:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: git<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;branch: master</p>
-</blockquote>
-<p><strong>注意：冒号后面都是要带一个空格的</strong><br>cd进入blog目录</p>
-<ol>
-<li>hexo clean //清除缓存</li>
-<li>hexo generate</li>
-<li>hexo server</li>
-</ol>
-<p>打开浏览器输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 就能看到初始blog了</p>
-<hr>
-<h4 id="上传到自己的github"><a href="#上传到自己的github" class="headerlink" title="上传到自己的github"></a>上传到自己的github</h4><p>在blog目录下安装：npm install hexo-deployer-git –save<br>执行命令：</p>
-<ol>
-<li>hexo clean</li>
-<li>hexo generate</li>
-<li>hexo deploy<br>在首次deploy的时候，会要求输入github的username及passward</li>
-</ol>
-<p><em>最后在浏览器中输入<a href="http://yourgithubname.github.io" target="_blank" rel="noopener">http://yourgithubname.github.io</a> 就可以看到自己的博客了</em></p>
-<hr>
-<h4 id="修改blog主题以及配置"><a href="#修改blog主题以及配置" class="headerlink" title="修改blog主题以及配置"></a>修改blog主题以及配置</h4><p>hexo的默认主题很丑！！所以我们需要更换它的主题，<a href="https://hexo.io/themes/" target="_blank" rel="noopener">themes</a>可以在这里面找到自己想要的主题，也可以通过<a href="https://www.baidu.com/" target="_blank" rel="noopener">百度</a>来找自己喜欢的风格主题</p>
-<h4 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h4><p>hexo支持markdown的语法，因此很方面，可以通过hexo new ‘文章名’或者hexo new page ‘文件夹名’来创建文章md文件，也可以手动在文件夹下面添加。</p>
-<ul>
-<li>到这里，简单的hexo博客搭建已经完成。最后，关于更换完主题后的相关配置，可以查看相关主题的配置文档，一般都会有详细的说明，这里就不多提了，好晚了~好困~~睡觉睡觉，祝自己好梦。</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2018/07/18/hexo/#more">more >></a>
+        
       
 
       

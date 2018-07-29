@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://llzupup.github.io">
   <title>React加载stylus文件之eject | Lzzzz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。安装stylus依赖：1yarn add stylus stylus-loader 在webpack配置依赖，如果要手动配置webpack的话，React必须先把配置Eject出来：1yarn run eject react-cli会询问你是否执行操作，并提示你这个操作是不可逆的。输入y继续这个时候">
+  <meta name="description" content="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。安装stylus依赖：1yarn add stylus stylus-loader">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React加载stylus文件之eject">
 <meta property="og:url" content="https://llzupup.github.io/2018/07/22/eject/index.html">
 <meta property="og:site_name" content="Lzzzz">
-<meta property="og:description" content="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。安装stylus依赖：1yarn add stylus stylus-loader 在webpack配置依赖，如果要手动配置webpack的话，React必须先把配置Eject出来：1yarn run eject react-cli会询问你是否执行操作，并提示你这个操作是不可逆的。输入y继续这个时候">
+<meta property="og:description" content="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。安装stylus依赖：1yarn add stylus stylus-loader">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-29T04:56:46.060Z">
+<meta property="og:updated_time" content="2018-07-29T05:28:32.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React加载stylus文件之eject">
-<meta name="twitter:description" content="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。安装stylus依赖：1yarn add stylus stylus-loader 在webpack配置依赖，如果要手动配置webpack的话，React必须先把配置Eject出来：1yarn run eject react-cli会询问你是否执行操作，并提示你这个操作是不可逆的。输入y继续这个时候">
+<meta name="twitter:description" content="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。安装stylus依赖：1yarn add stylus stylus-loader">
   
     <link rel="alternative" href="/atom.xml" title="Lzzzz" type="application/atom+xml">
   
@@ -174,6 +174,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="上篇知道了如何自定义配置webpack-接下来就让我们用简单一些的方法来实现使用stylus等功能。"><a href="#上篇知道了如何自定义配置webpack-接下来就让我们用简单一些的方法来实现使用stylus等功能。" class="headerlink" title="上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。"></a>上篇知道了如何自定义配置webpack,接下来就让我们用简单一些的方法来实现使用stylus等功能。</h3><p><strong>安装stylus依赖：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add stylus stylus-loader</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p><strong>在webpack配置依赖，如果要手动配置webpack的话，React必须先把配置Eject出来：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn run eject</span><br></pre></td></tr></table></figure></p>
 <p><strong>react-cli会询问你是否执行操作，并提示你这个操作是不可逆的。</strong><br>输入y继续<br><br>这个时候如果eject的该项目是在本地的一个git仓库里的，而且这个仓库里还有文件未上传到远程。那么恭喜你，你eject会失败，它会告诉你必须要把本地这个仓库里的文件未更改的状态下才能把webpack配置eject出来。<br><br><br><strong>成功以后项目根目录下会弹射出一个config文件夹和一个scripts文件夹，同时package.json里的相关配置也会改变</strong><br><br><br>在弹射出来的config文件夹下找到webpack.config.dev.js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">找到module.rules.oneOf,里面有一个css的配置项，把styl加进去:</span><br><span class="line">test: /\.(css|styl)$/,</span><br><span class="line">然后在use中加入以下配置代码：</span><br><span class="line">&#123;</span><br><span class="line">  loader: require.resolve(&apos;stylus-loader&apos;),</span><br><span class="line">  options: &#123;</span><br><span class="line">    sourceMap: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">滑到oneOf的最下面，找到exclude，将styl加进去：</span><br><span class="line">exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/,/\.styl$/],</span><br></pre></td></tr></table></figure></p>
 <p><strong>然后记住要重新yarn安装一下依赖，最后输入yarn start就能成功启动了(可以直接引入styl文件)，这个时候还会出现一个postcss的提示，原来他是一个强大的东西，autoprefixer也只是他其中的一个插件</strong><br>安装postcss-loader:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add postcss-loader</span><br></pre></td></tr></table></figure></p>

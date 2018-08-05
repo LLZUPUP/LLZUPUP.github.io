@@ -174,61 +174,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="eventbus"><a href="#eventbus" class="headerlink" title="eventbus"></a>eventbus</h3><p>兄弟组件进行传数据/方法可通过eventBus来实现，也可以用状态管理 vuex来实现</p>
-<ul>
-<li><p>新建一个model文件夹，创建一个bus.js文件，创建一个vue实例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue</span><br><span class="line"></span><br><span class="line">const VueEvent = new Vue()</span><br><span class="line"></span><br><span class="line">export default VueEvent</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接下来在A组件里对B组件进行传值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import VueEvent from &apos;.../model/bus.js</span><br><span class="line"></span><br><span class="line">VueEvent.$emit(&apos;to-b&apos;,//传数据对应接收的参数名,this.msg //要传的数据)</span><br><span class="line"></span><br><span class="line">VueEvent.$emit(&apos;to-b&apos;,this.msg)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在b组件接受a组件传过来的数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import VueEvent from &apos;../model/bus.js&apos;</span><br><span class="line"></span><br><span class="line">VueEvent.$on(&apos;to-b&apos;,(data)=&gt;&#123;</span><br><span class="line">  console.log(data) //data就是传过来的数据</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><strong>非父子组件传值</strong></p>
-<ol>
-<li>新建一个js文件，引入vue，实例化vue——Vue，最后暴露这个实例，export default</li>
-<li>在要发布数据的组件引入bus.js定义的Vue实例</li>
-<li>通过 VueEvent这个实例，VueEvent.$emit(‘名称’,’数据’)</li>
-<li>在订阅数据的组件引入bus.js定义的vue实例，通过VueEvent.$on(‘名称’,’数据’)来得到数据</li>
-</ol>
-<hr>
-
-<h3 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">新建一个router文件夹，index.js</span><br><span class="line"></span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line"></span><br><span class="line">import Router from &apos;vue-router&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line">export default new Router (&#123;</span><br><span class="line">  mode: hash/history      //路由模式</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/&apos;  //首页</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;*&apos;   //没有匹配到的路由</span><br><span class="line">      redirect: &apos;/&apos;     //重定义到首页页面，也可以创建一个404组件页面</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">在main.js里引入./router/index 的router</span><br><span class="line"></span><br><span class="line">将router放入main.js里的App实例中</span><br></pre></td></tr></table></figure>
-<p>动态路由：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=&quot;/content/$&#123;index&#125;&quot; for=&quot;(item,index) in list&quot;&gt;新闻&lt;/router-link&gt;</span><br><span class="line"></span><br><span class="line">routes: [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &apos;/content/:aid&apos;, //必须要这样配置，否则将匹配不到</span><br><span class="line">    component: &apos;Content&apos;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">然后可以在Content组件里通过 this.$route.params 来获取动态路由传过来的值了</span><br></pre></td></tr></table></figure></p>
-<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p><strong>不同路由传值，动态路由</strong></p>
-<ol>
-<li><p>配置动态路由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">routes: [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &apos;/user/:id&apos;,</span><br><span class="line">    component: User</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在对应的页面通过</p>
-<p>this.$route.params 来获取动态路由传过来的值</p>
-</li>
-</ol>
-<hr>
-<p>通过get传值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=&quot;/content?aid=index&quot; for=&quot;(item,index) in list&quot;&gt;新闻&lt;/router-link&gt;</span><br><span class="line"></span><br><span class="line">routes: [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &apos;/content&apos;, </span><br><span class="line">    component: &apos;Content&apos;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">然后可以在Content组件里mounted钩子函数里通过 this.$route.query 来获取动态路由传过来的值了</span><br></pre></td></tr></table></figure></p>
-<h4 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h4><p>vuex 使用单一状态树，解决了vue组件间同一状态的共享问题，解决了不同组件的数据共享问题，还加强了组件里面数据的持久化</p>
-<ul>
-<li>创建一个store文件夹，index.js文件.</li>
-<li>安装vuex，yarn add vuex –save<blockquote>
-<p>import Vue from ‘vue’<br>import Vuex from ‘vuex’<br>Vue.use(Vuex)</p>
-</blockquote>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">store-index.js</span><br><span class="line"></span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">const state = &#123;</span><br><span class="line">  count: 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const mutations = &#123;</span><br><span class="line">  incCount() &#123;</span><br><span class="line">    ++state.count</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">  state,</span><br><span class="line">  mutations:</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default store</span><br><span class="line"></span><br><span class="line">在main.js 引入store，并传入store</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>在组件中引入store<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import store from &apos;../store/index.js</span><br><span class="line"></span><br><span class="line">如果要使用store里的state数据，要用 this.$store.state.count</span><br><span class="line"></span><br><span class="line">改变数据：</span><br><span class="line">methods: &#123;</span><br><span class="line">  incCount() &#123;</span><br><span class="line">    this.$store.commit(&apos;incCount&apos;)    //出发mutations里的incCount方法</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li><p>获取state里面的数据<br> this.$store.state.数据</p>
-</li>
-<li><p>触发mutations 改变state里面的数据<br> this.$store.commit(‘incCount’)</p>
-</li>
-<li><p>通过触发actions里面的方法来触发mutations改变数据<br> this.$store.dispatch(‘incCount’)</p>
-</li>
-<li><p> 可以获取到getters计算后的数据，需要return 返回</p>
-</li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2018/08/04/vue/#more">more >></a>
+        
       
 
       
@@ -939,7 +887,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -947,7 +895,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
             
             <div class="clearfix"></div>

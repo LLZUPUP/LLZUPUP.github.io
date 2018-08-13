@@ -6,19 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://llzupup.github.io">
-  <title>相册 | Lzzzz</title>
+  <title>vue全家桶仿某鱼部分布局以及功能实现 | Lzzzz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
-<meta property="og:type" content="website">
-<meta property="og:title" content="相册">
-<meta property="og:url" content="https://llzupup.github.io/photos/index.html">
+  <meta name="description" content="前言每次写文章时，总会觉得比写代码难多了，可能这就是我表述方面的不足吧，然而写文章也是可以复盘一下自己的开发过程，对自己还是受益良多的。在这里简单叙述一下我仿某鱼部分布局以及功能实现的过程，仅做学习用途。 Vue是一套用于构建用户界面的渐进式框架，Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue全家桶仿某鱼部分布局以及功能实现">
+<meta property="og:url" content="https://llzupup.github.io/2018/08/13/fallow-fish/index.html">
 <meta property="og:site_name" content="Lzzzz">
-<meta property="og:description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
+<meta property="og:description" content="前言每次写文章时，总会觉得比写代码难多了，可能这就是我表述方面的不足吧，然而写文章也是可以复盘一下自己的开发过程，对自己还是受益良多的。在这里简单叙述一下我仿某鱼部分布局以及功能实现的过程，仅做学习用途。 Vue是一套用于构建用户界面的渐进式框架，Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-29T04:34:11.105Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/13/16532f4aed27cd0c?w=378&h=660&f=gif&s=867374">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/13/16532f4fbdd56312?w=378&h=660&f=gif&s=940449">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/13/16532f53fea37bcd">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/13/16532f585aaea602?w=378&h=660&f=gif&s=3652275">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/13/16532f5e57e4dad3?w=378&h=660&f=gif&s=336735">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/13/16532f5c2270878d?w=378&h=660&f=gif&s=1303769">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/13/165332740b4098e0?w=500&h=333&f=jpeg&s=21559">
+<meta property="og:updated_time" content="2018-08-13T12:11:19.874Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相册">
-<meta name="twitter:description" content="Ins 	摄影   	图片来自instagram，正在加载中…     (function() {     var loadScript = function(path) {       var $script = document.createElement(&apos;script&apos;)       document.getElementsByTagName(&apos;body&apos;)[0].appendChi">
+<meta name="twitter:title" content="vue全家桶仿某鱼部分布局以及功能实现">
+<meta name="twitter:description" content="前言每次写文章时，总会觉得比写代码难多了，可能这就是我表述方面的不足吧，然而写文章也是可以复盘一下自己的开发过程，对自己还是受益良多的。在这里简单叙述一下我仿某鱼部分布局以及功能实现的过程，仅做学习用途。 Vue是一套用于构建用户界面的渐进式框架，Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/8/13/16532f4aed27cd0c?w=378&h=660&f=gif&s=867374">
   
     <link rel="alternative" href="/atom.xml" title="Lzzzz" type="application/atom+xml">
   
@@ -152,42 +161,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-photos" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-fallow-fish" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      相册
+      vue全家桶仿某鱼部分布局以及功能实现
     </h1>
   
 
+        
+        <a href="/2018/08/13/fallow-fish/" class="archive-article-date">
+  	<time datetime="2018-08-13T12:01:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-13</time>
+</a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" href="./ins.css">
-<div class="photos-btn-wrap">
-	<a class="photos-btn active" href="javascript:void(0)" target="_blank" rel="noopener">Ins</a>
-	<a class="photos-btn" target="_blank" href="http://litten.me/gallery/">摄影</a>
-</div>
-<div class="instagram itemscope">
-	<a href="https://www.instagram.com/litten225/" target="_blank" class="open-ins">图片来自instagram，正在加载中…</a>
-</div>
-<script>
-  (function() {
-    var loadScript = function(path) {
-      var $script = document.createElement('script')
-      document.getElementsByTagName('body')[0].appendChild($script)
-      $script.setAttribute('src', path)
-    }
-    setTimeout(function() {
-      loadScript('./ins.js')
-    }, 0)
-  })()
-</script>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>每次写文章时，总会觉得比写代码难多了，可能这就是我表述方面的不足吧，然而写文章也是可以复盘一下自己的开发过程，对自己还是受益良多的。在这里简单叙述一下我仿某鱼部分布局以及功能实现的过程，仅做学习用途。</strong></p>
+<p><strong>Vue是一套用于构建用户界面的渐进式框架，Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的SPA单页面应用提供驱动。</strong></p>
+<hr>
+<h3 id="技术栈以及组件库"><a href="#技术栈以及组件库" class="headerlink" title="技术栈以及组件库"></a>技术栈以及组件库</h3><ul>
+<li>vuex: 解决组件数据共享问题，加强组件数据持久化。</li>
+<li>vue-router: 主要实现spa单页面开发。</li>
+<li>axios: 异步请求数据。</li>
+<li>easymock: 假数据模拟接口。</li>
+<li>mint-ui: 一款移动端开发的框架。<a href="http://mint-ui.github.io/#!/zh-cn" target="_blank" rel="noopener">Mint UI</a></li>
+<li>stylus: css预处理器</li>
+<li>better-scroll: 一个移动端滚动的解决方案</li>
+<li>swiper: 一个强大的滑动特效插件</li>
+<li>lrz: 图片压缩插件</li>
+</ul>
+<a id="more"></a>
+<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><strong>搜索</strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/8/13/16532f4aed27cd0c?w=378&amp;h=660&amp;f=gif&amp;s=867374" alt=""><br><strong>分类</strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/8/13/16532f4fbdd56312?w=378&amp;h=660&amp;f=gif&amp;s=940449" alt=""><br><strong>登录</strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/8/13/16532f53fea37bcd" alt=""></p>
+<p><strong>购买</strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/8/13/16532f585aaea602?w=378&amp;h=660&amp;f=gif&amp;s=3652275" alt=""><br><img src="https://user-gold-cdn.xitu.io/2018/8/13/16532f5e57e4dad3?w=378&amp;h=660&amp;f=gif&amp;s=336735" alt=""><br><strong>发布</strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/8/13/16532f5c2270878d?w=378&amp;h=660&amp;f=gif&amp;s=1303769" alt=""></p>
+<h3 id="代码目录结构"><a href="#代码目录结构" class="headerlink" title="代码目录结构"></a>代码目录结构</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">●</span><br><span class="line">┣━ src # 开发目录</span><br><span class="line">  ┣━ api                  //axios获取假数据的统一js</span><br><span class="line">   ┣━ data.js</span><br><span class="line">  ┣━ assets                  //静态文件资源</span><br><span class="line">   ┣━ images                 //图片</span><br><span class="line">   ┣━ utils                  //通用js方法函数</span><br><span class="line">  ┣━ common                 //通用的文件资源</span><br><span class="line">   ┣━ stylus                 //stylus文件夹</span><br><span class="line">  ┣━ component              //可复用的组件</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">  ┣━ pages                 //页面（页面组件）</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">   ┣━...</span><br><span class="line">  ┣━ router                 //路由</span><br><span class="line">   ┣━ index.js</span><br><span class="line">  ┣━ store                  //vuex数据状态管理</span><br><span class="line">   ┣━ index.js</span><br><span class="line">   ┣━ state.js</span><br><span class="line">   ┣━ mutations.js</span><br><span class="line">   ┣━ actions.js</span><br><span class="line">   ┣━ getters.js</span><br><span class="line">  ┣━ App.vue                //根组件</span><br><span class="line">  ┗━ main.js</span><br></pre></td></tr></table></figure>
+<h3 id="实现主要的几个功能"><a href="#实现主要的几个功能" class="headerlink" title="实现主要的几个功能"></a>实现主要的几个功能</h3><ul>
+<li><p>登录退出</p>
+<p>用户在已登录状态和未登录状态的界面是不同的，有些功能指定要在登录状态下才会有，因此会产生状态的切换，我们可以通过浏览器自带的window.localStorage来存储数据，也可以用vuex，如果状态多的情况下建议采用vuex</p>
+</li>
+<li><p>搜索功能</p>
+<p>这个没什么好说的，利用indexOf这个方法来验证假数据中是否有这个key，相应输出它的value，没有那就切换另一个找不到的UI界面</p>
+</li>
+<li><p>分类功能</p>
+<p>这个也没有什么难度，取到假数据中的数据来for in循环输出，然后用better-scroll插件来实现滚动对应的高度效果</p>
+</li>
+<li><p>购买</p>
+<p>如果是在未登录的状态下，那么进行一个router-link路由跳转到登录login页面，如果是已登录的状态下，会进入到一个商品详情页，点击我想要会进入到一个与卖家聊天交互的一个界面，这里面的卖家的数据都是模拟出来的假数据，因此它不能像真的卖家一样。其中每一个表情emoji就是一个图片，用code的方式把它编译出来再进行一个swiper轮播来包裹他们的遍历循环。<br><br>接着点击立即购买则会跳到付款页面，如果填过地址等信息的，那么可以选择，如果未填的，则会引导至输入相关信息页面，再点击购买就成功了，这个时候数据就会利用vuex保存到我的个人页面中的我买到的页面中。可以进行确认收货后删除订单。</p>
+</li>
+<li><p>发布</p>
+<p>一样，只有在已登录的状态下才可以进入到发布的界面，发布就是充当着一个卖家的身份，需要填写商品详情的相关信息包括图片，价格等。通过验证才可发布成功，同样利用了vuex来保存发布的商品信息，再跳至我的页面中的我发布的页面进行数据输出。</p>
+</li>
+<li><p>设备适配</p>
+<p>我是用rem来实现的，也建议用rem来自适应布局，先自己封装一个自适应html的 font-size的js，再将其导入到main.js中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * Created by zhaolele on 2018/7/25.</span><br><span class="line">  */</span><br><span class="line">  (function(doc, win) &#123;</span><br><span class="line">    var docEl = doc.documentElement,</span><br><span class="line">      resizeEvt = &apos;orientationchange&apos; in window ? &apos;orientationchange&apos; : &apos;resize&apos;,</span><br><span class="line">      recalc = function() &#123;</span><br><span class="line">        var clientWidth = docEl.clientWidth;</span><br><span class="line">        if (!clientWidth) return;</span><br><span class="line">        docEl.style.fontSize = 32 * (clientWidth / 320) + &apos;px&apos;;</span><br><span class="line">      &#125;;</span><br><span class="line">    if (!doc.addEventListener) return;</span><br><span class="line">    win.addEventListener(resizeEvt, recalc, false);</span><br><span class="line">    doc.addEventListener(&apos;DOMContentLoaded&apos;, recalc, false);</span><br><span class="line">  &#125;)(document, window);</span><br><span class="line">  </span><br><span class="line">  //10rem</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>移动端一像素</p>
+<p>众所周知，移动端因不同的设备的分辨率导致一像素并不是真正的统一的一像素，因此我们需要封装一个stylus的mixin来引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">border-1px($color)</span><br><span class="line">  position: relative</span><br><span class="line">  &amp;:after</span><br><span class="line">    display: block</span><br><span class="line">    position: absolute</span><br><span class="line">    left: 0</span><br><span class="line">    bottom: 0</span><br><span class="line">    width: 100%</span><br><span class="line">    border-top: 1px solid $color</span><br><span class="line">    content: &apos; &apos;</span><br><span class="line">    </span><br><span class="line">@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)</span><br><span class="line">  .border-1px</span><br><span class="line">    &amp;::after</span><br><span class="line">      -webkit-transform: scaleY(0.7)</span><br><span class="line">      transform: scaleY(0.7)</span><br><span class="line"></span><br><span class="line">@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)</span><br><span class="line">  .border-1px</span><br><span class="line">    &amp;::after</span><br><span class="line">      -webkit-transform: scaleY(0.5)</span><br><span class="line">      transform: scaleY(0.5)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>图片上传</li>
+</ul>
+<p>可以使用input中type的file属性，然后用html5的新属性hidden来隐藏掉这个节点，通过点击其他的节点来触发这个input type=file的点击事件，再利用lrz的图片压缩将图片优美的输出到也页面中。拿里面的上传头像的代码贴一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">html:</span><br><span class="line">&lt;div class=&quot;avatar&quot; @click=&quot;addPic&quot;&gt;</span><br><span class="line">    &lt;img :src=&quot;url&quot; alt=&quot;&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;upavatar&quot;&gt;上传帅照&lt;/span&gt;</span><br><span class="line">    &lt;input type=&quot;file&quot; hidden accept=&quot;image/jpeg,image/jpg,image/png&quot; capture=&quot;camera&quot; @change=&quot;fileInput&quot; ref=&quot;file&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">js 方法：</span><br><span class="line"></span><br><span class="line">addPic() &#123;</span><br><span class="line">  this.$refs.file.click()</span><br><span class="line">&#125;,              //点击触发fileInput事件</span><br><span class="line"></span><br><span class="line">fileInput(e) &#123;</span><br><span class="line">  let files = e.target.files</span><br><span class="line">  console.log(files)</span><br><span class="line">  if(!files.length) return</span><br><span class="line">  this.createImage(files, e)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">createImage(files, e) &#123;</span><br><span class="line">  lrz(files[0], &#123; width: 480 &#125;).then(rst=&gt; &#123;</span><br><span class="line">    this.url = rst.base64</span><br><span class="line">  &#125;).catch(err=&gt; &#123;</span><br><span class="line">    console.log(err)</span><br><span class="line">  &#125;).always(()=&gt; &#123;</span><br><span class="line">    e.tartget.value = null</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><img src="https://user-gold-cdn.xitu.io/2018/8/13/165332740b4098e0?w=500&amp;h=333&amp;f=jpeg&amp;s=21559" alt=""></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p><strong>很多东西细节想聊出来，比如嵌套路由所踩的坑..等，但是最近忙于找工作，时间问题就写到这里，有兴趣或者正在学习vue的同学可以查看我的github源码。<a href="https://github.com/LLZUPUP/vue-fallowFish" target="_blank" rel="noopener">fallow-fish</a><br><br><br>如果对你有帮助，可以star我的项目给我一点点的鼓励，也希望有志同道和的可以加入一起讨论，我也会第一时间帮你解答。</strong></p>
 
       
 
@@ -227,6 +277,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -277,7 +338,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://llzupup.github.io/photos/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://llzupup.github.io/2018/08/13/fallow-fish/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -289,6 +350,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/04/vue/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue部分知识点</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -307,6 +378,32 @@
 </aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://llzupup.github.io/2018/08/13/fallow-fish/",
+  owner: 'LLZUPUP',
+  repo: 'book_note',
+  oauth: {
+    client_id: 'c025c72d8b98c6577a5b',
+    client_secret: '6ac17fa7a7aeb758935da796d76d6137207f014f',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -329,7 +426,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
